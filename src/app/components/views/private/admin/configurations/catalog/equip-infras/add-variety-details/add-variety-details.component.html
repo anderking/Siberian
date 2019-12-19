@@ -1,0 +1,79 @@
+<div class="container" *ngIf="equipinfras">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 class="text-center">Asignar Modelo</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+    </div>
+  </div>
+  <hr>
+
+
+
+    <div class="row">
+      <div class="col-sm-12">
+        <mat-card>
+          <mat-card-header class="titulo border-top-danger">
+            <mat-card-title>
+              {{variety.name}}
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="row">
+              <div class="col-sm-8 offset-2">
+                <br>
+                <form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+                  <mat-form-field>
+                    <input matInput id="inputName" name="name" placeholder="Nombre" [(ngModel)]="name" required>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <textarea matInput name="description" placeholder="Descripción" [(ngModel)]="description" required></textarea>
+                  </mat-form-field> 
+
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.form.valid">Asignar</button>
+                    </div>
+                  </div>
+                </form>
+                <hr>
+
+                <div *ngIf="equipinfras.varietyDetails.length>0">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <mat-list>
+                        <mat-list-item *ngFor="let varietyDetail of equipinfras.varietyDetails">
+                          <h4 mat-line>{{varietyDetail.name}}</h4><span class="badge badge-primary">0</span>
+                          <button mat-icon-button color="primary" matTooltip="Asignar Servicios" matTooltipPosition="above" [routerLink]="['/auth/admin/configurations/catalog/equip-infras/show',equipinfras.id,'variety',variety.id,'varietyDetails',varietyDetail.id,'addServiceDetail']"><mat-icon>add</mat-icon></button>
+                          <button mat-icon-button color="warn" matTooltip="Borrar Modelo" matTooltipPosition="above" (click)="onDelete(varietyDetail.id)"><mat-icon>delete</mat-icon></button>
+                        </mat-list-item>
+                      </mat-list>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="equipinfras.varietyDetails.length<=0">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <mat-list>
+                        <mat-list-item>
+                          <h4 mat-line>No tiene modelos</h4>
+                        </mat-list-item>
+                      </mat-list>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+
+</div>

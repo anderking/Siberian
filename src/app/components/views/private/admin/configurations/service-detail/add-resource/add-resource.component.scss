@@ -1,0 +1,16 @@
+.inputCant{
+	width: 100%;
+	margin-bottom:1.1em;
+}
+
+.inputCant:nth-child(1){
+	margin-top:1em;
+}
+
+
+.service_create.closed{
+  display:none;
+}
+.service_create.open{
+  display:block;
+}

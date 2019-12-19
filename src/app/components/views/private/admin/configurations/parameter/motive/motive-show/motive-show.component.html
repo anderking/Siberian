@@ -1,0 +1,35 @@
+<div class="container">
+  <h2 *ngIf="motive" class="text-center">{{ motive.name }}</h2>
+  <button mat-raised-button color="primary" [routerLink]="['/auth/admin/configurations/parameter/motive']">Volver</button>
+  <hr>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let row"> {{ row.description }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Estatus </th>
+            <td mat-cell *matCellDef="let row">
+              <span *ngIf="row.status=='active'" class="badge badge-success">{{row.status | titlecase}}</span>
+              <span *ngIf="row.status=='deleted'" class="badge badge-danger">{{row.status | titlecase}}</span>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+
+  
+</div>

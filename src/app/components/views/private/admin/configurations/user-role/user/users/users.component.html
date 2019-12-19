@@ -1,0 +1,27 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<h2 class="text-center">Usuarios</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<button mat-raised-button matTooltip="Nuevo Usuario" matTooltipPosition="above" color="primary" class="mr-3" [routerLink]="['create']"><mat-icon>add</mat-icon></button>
+		</div>
+	</div>
+	<hr>
+
+	<div class="row">
+		<div class="col-sm-12">
+			<mat-tab-group>
+			  <mat-tab label="Activos"> <sib-user-actives (inactiveOutput)="changeInactive($event)" [recoverOutputRecived]="recoverOutputRecived" [inactiveOutputRecived]="inactiveOutputRecived"></sib-user-actives> </mat-tab>
+
+			  <mat-tab label="Inactivos"> <sib-user-inactives (recoverOutput)="changeRecover($event)" [inactiveOutputRecived]="inactiveOutputRecived" ></sib-user-inactives> </mat-tab>
+
+			  <mat-tab label="Clientes"> <sib-user-client (inactiveOutput)="changeInactive($event)" [recoverOutputRecived]="recoverOutputRecived" [inactiveOutputRecived]="inactiveOutputRecived"></sib-user-client> </mat-tab>
+
+			</mat-tab-group>
+		</div>
+	</div>
+
+</div>

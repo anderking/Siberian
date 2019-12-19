@@ -1,0 +1,113 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<h2 class="text-center">Categorías</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<button mat-raised-button matTooltip="Nueva Categoría" matTooltipPosition="above" color="primary" class="mr-3" [routerLink]="['create']"><mat-icon>add</mat-icon></button>
+			<button mat-raised-button matTooltip="Volver" matTooltipPosition="above" color="primary" [routerLink]="['/auth/admin/configurations/catalog/']"><mat-icon>arrow_back</mat-icon></button>
+		</div>
+	</div>
+	<hr>
+
+	<div *ngIf="categories">
+		
+		<div class="row">
+			<div class="col-sm-12">
+				<mat-form-field>
+					<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+				</mat-form-field>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="mat-elevation-z8">
+					
+					<div *ngIf="categories.length<=0 && !failedConect">
+						<div class="row">
+							<div class="col-sm-12">
+								<h3 class="text-center mt-3 mb-3">{{message}}</h3>
+							</div>
+						</div>
+					</div>
+
+					<table *ngIf="categories.length>0" mat-table [dataSource]="dataSource" matSort>
+
+						<ng-container matColumnDef="id">
+							<th mat-header-cell *matHeaderCellDef> </th>
+							<td mat-cell *matCellDef="let row">
+								<button mat-icon-button color="accent" [routerLink]="['show', row.id]" matTooltip="Detalle" matTooltipPosition="above" >
+									<mat-icon>remove_red_eye</mat-icon>
+								</button>
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="name">
+							<th mat-header-cell *matHeaderCellDef > Nombre </th>
+							<td mat-cell *matCellDef="let row"> {{row.name}} </td>
+						</ng-container>
+
+						<ng-container matColumnDef="description">
+							<th mat-header-cell *matHeaderCellDef> Descripción </th>
+							<td mat-cell *matCellDef="let row"> {{row.description}}</td>
+						</ng-container>
+
+						<ng-container matColumnDef="subcategories">
+							<th mat-header-cell *matHeaderCellDef> Subcategorías </th>
+							<td mat-cell *matCellDef="let row"> {{row.subcategories.length}} </td>
+						</ng-container>
+
+						<ng-container matColumnDef="status">
+							<th mat-header-cell *matHeaderCellDef> Estatus </th>
+							<td mat-cell *matCellDef="let row">
+								<span *ngIf="row.status=='active'" class="badge badge-success">{{row.status | titlecase}}</span>
+								<span *ngIf="row.status=='deleted'" class="badge badge-danger">{{row.status | titlecase}}</span>
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="addSubcategory">
+							<th mat-header-cell *matHeaderCellDef></th>
+							<td mat-cell *matCellDef="let row">
+								<button mat-icon-button color="primary" [routerLink]="[row.id,'addSubcategory']" matTooltip="Asignar SubCategoría" matTooltipPosition="above">
+									<mat-icon>add</mat-icon>
+								</button>
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="edit">
+							<th mat-header-cell *matHeaderCellDef></th>
+							<td mat-cell *matCellDef="let row">
+								<button mat-icon-button color="accent" [routerLink]="['edit', row.id]" matTooltip="Editar" matTooltipPosition="above">
+									<mat-icon>edit</mat-icon>
+								</button>
+							</td>
+						</ng-container>
+
+						<ng-container matColumnDef="delete">
+							<th mat-header-cell *matHeaderCellDef></th>
+							<td mat-cell *matCellDef="let row">
+								<button mat-icon-button color="warn" (click)="onDelete(row.id)" matTooltip="Eliminar" matTooltipPosition="above">
+									<mat-icon>delete</mat-icon>
+								</button>
+							</td>
+						</ng-container>
+
+						<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+						<tr mat-row *matRowDef="let row; columns: displayedColumns;">
+						</tr>
+					</table>
+
+					<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+</div>
+

@@ -1,0 +1,102 @@
+<div class="main_dashboard">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="principal_graph">
+          <mat-card>
+            <canvas id="MonthService"></canvas>
+          </mat-card>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <a [routerLink]="['/auth/lender/request']">
+          <mat-card class="mat-card">
+            <mat-card-header>
+              <mat-card-title><b>Solicitudes</b></mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="mat_card_content">
+              <mat-icon class="dashboard_icon text-center">assignment</mat-icon>
+              <h3 class="text-center">Solicitudes</h3>
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+
+      <div class="col-sm-6">
+        <a [routerLink]="['/auth/lender/execute']">
+          <mat-card class="mat-card">
+            <mat-card-header>
+              <mat-card-title><b>Servicios</b></mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="mat_card_content">
+              <mat-icon class="dashboard_icon text-center">assignment_ind</mat-icon>
+              <h3 class="text-center">Servicios</h3>
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <a [routerLink]="['/auth/lender/incidence']">
+          <mat-card class="mat-card">
+            <mat-card-header>
+              <mat-card-title><b>Incidencias</b></mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="mat_card_content">
+              <mat-icon class="dashboard_icon text-center">warning</mat-icon>
+              <h3 class="text-center">Incidencias</h3>
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+
+      <div class="col-sm-6">
+        <a [routerLink]="['/auth/lender/claim']">
+          <mat-card class="mat-card">
+            <mat-card-header>
+              <mat-card-title><b>Reclamos</b></mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="mat_card_content">
+              <mat-icon class="dashboard_icon text-center">feedback</mat-icon>
+              <h3 class="text-center">Reclamos</h3>
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <a [routerLink]="['/auth/lender/calendar']">
+          <mat-card class="mat-card">
+            <mat-card-header>
+              <mat-card-title><b>Agenda</b></mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="mat_card_content">
+              <mat-icon class="dashboard_icon text-center">today</mat-icon>
+              <h3 class="text-center">Agenda</h3>
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+</div>
+

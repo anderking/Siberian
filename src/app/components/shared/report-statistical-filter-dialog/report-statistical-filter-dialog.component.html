@@ -1,0 +1,45 @@
+<div>
+    <h1 mat-dialog-title>Filtros</h1>
+    <div mat-dialog-content>
+      <mat-form-field>
+        <mat-label for="">Género</mat-label>
+        <mat-select name="gender" [(ngModel)]="genderSelected" placeholder="Género">
+          <mat-option value="Masculino">Masculino</mat-option>
+          <mat-option value="Femenino">Femenino</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field>
+        <mat-label for="">Tipo de servicio</mat-label>
+        <mat-select name="type" [(ngModel)]="typeSelected" (ngModelChange)="changeType($event)" placeholder="Seleccione un Tipo de Servicio" required>
+          <mat-option *ngFor="let type of types" [value]="type.id">{{ type.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- <div class="service_create" [class.open]="isServiceDetail" [class.closed]="!isServiceDetail">
+        <mat-form-field>
+          <mat-label for="">Servicios</mat-label>
+          <mat-select name="serviceDetail" [(ngModel)]="serviceDetailSelected" placeholder="Seleccione un Servicio" required>
+            <mat-option *ngFor="let serviceDetail of serviceDetails" [value]="serviceDetail.id">{{ serviceDetail.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div> -->
+
+      <div class="service_create" [class.open]="isEquipInfras" [class.closed]="!isEquipInfras">
+        <mat-form-field>
+          <mat-label for="">Equipos</mat-label>
+          <mat-select name="equipinfras" [(ngModel)]="equipInfrasDetailSelected" (ngModelChange)="changeEquipInfras($event)" placeholder="Seleccione un Equipo - Infraestructura" required>
+            <mat-option *ngFor="let equipinfras of equipinfrass" [value]="equipinfras.name">{{ equipinfras.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+    </div>
+      
+    <div mat-dialog-actions>
+      <p class="text-center">
+        <button mat-raised-button color="warn" [mat-dialog-close]="false">Cancelar</button>
+        <button mat-raised-button color="accent" [mat-dialog-close]="true">Aplicar</button>
+      </p>
+    </div>
+  </div>

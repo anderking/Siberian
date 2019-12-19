@@ -1,0 +1,50 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<h2 class="text-center">Nuevo Componente</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+		</div>
+	</div>
+	<hr>
+			
+	<mat-card>
+		<mat-card-header class="titulo border-top-danger">
+			<mat-card-title>
+				Componente
+			</mat-card-title>
+		</mat-card-header>
+		<mat-card-content>
+			<div class="row">
+			  <div class="col-sm-8 offset-2">
+				<form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="example-container">
+							
+							<mat-form-field>
+								<input matInput id="inputName" name="name" placeholder="Nombre" [(ngModel)]="name" required>
+							</mat-form-field>
+				
+							<mat-form-field>
+								<textarea matInput name="description" placeholder="Descripción" [(ngModel)]="description"></textarea>
+							</mat-form-field>	
+				
+							</div>
+						</div>
+					</div>
+				
+					<div class="row">
+						<div class="col-sm-12">
+							<button mat-raised-button color="primary" [routerLink]="['/auth/admin/configurations/service/component/create']">Registrar</button>
+						</div>
+					</div>
+				</form>
+			  </div>
+			</div>
+		</mat-card-content>
+	</mat-card>
+</div>

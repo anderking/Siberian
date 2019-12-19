@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+<h1 mat-dialog-title>Calificar el servicio</h1>
+</div>
+
+<div mat-dialog-content>    
+    
+      <div class="row justify-content-center">
+     
+        <div class="ec-stars-wrapper">
+          <a [routerLink]="['/auth/client/calification']" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+          <a [routerLink]="['/auth/client/calification']" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+          <a [routerLink]="['/auth/client/calification']" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+          <a [routerLink]="['/auth/client/calification']" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+          <a [routerLink]="['/auth/client/calification']" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+        </div>
+      </div>
+
+      <div class="service_create">
+        <div  *ngFor="let q of questions">
+            <mat-label for="">{{q.enquire}}</mat-label>
+
+            <mat-radio-group aria-label="test" name="question" [(ngModel)]="questionSelected" (ngModelChange)="changeQuestion($event)">
+              <mat-radio-button class="col-md-1" *ngFor="let cal of calification" [value]="cal.id"  style="margin: 10px">
+                {{cal.name}}
+              </mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <!--<mat-form-field *ngFor="let q of questions">
+          <mat-label for="">{{q.enquire}}</mat-label>
+
+          <mat-radio-group aria-label="test" name="question" [(ngModel)]="questionSelected" (ngModelChange)="changeQuestion($event)">
+            <mat-radio-button class="col-md-1" *ngFor="let cal of calification" [value]="cal.id"  style="margin: 10px">
+              {{cal.name}}
+            </mat-radio-button>
+          </mat-radio-group>
+            <mat-select name="question" [(ngModel)]="questionSelected" (ngModelChange)="changeQuestion($event)" placeholder="Respuesta">
+              <mat-option value="1">1</mat-option>
+              <mat-option value="2">2</mat-option>
+              <mat-option value="3">3</mat-option>
+              <mat-option value="4">4</mat-option>
+              <mat-option value="5">5</mat-option>
+            </mat-select>
+          </mat-form-field>-->
+        </div>
+
+  <div mat-dialog-actions>
+			<p class="text-center">
+        <button mat-raised-button color="warn" [mat-dialog-close]="false" >Cancelar</button>
+        <button type="submit" mat-raised-button color="primary" >Calificar</button>
+			</p>
+		</div>
+</div>
+

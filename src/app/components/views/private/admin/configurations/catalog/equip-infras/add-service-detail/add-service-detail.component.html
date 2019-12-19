@@ -1,0 +1,96 @@
+<div class="container">
+
+	<div class="row">
+		<div class="col-sm-12">
+			<h2 class="text-center">Asignar Servicio</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+		</div>
+	</div>
+	<hr>
+
+	<div *ngIf="serviceDetails">
+
+		<div class="row">
+			<div class="col-sm-12">
+				<mat-card>
+					<mat-card-header class="titulo border-top-danger">
+						<mat-card-title>
+							{{varietyDetail.name}}
+						</mat-card-title>
+					</mat-card-header>
+					<mat-card-content>
+						<div class="row">
+							<div class="col-sm-8 offset-2">
+								<br>
+								<form #updateForm="ngForm" (ngSubmit)="update(updateForm)">
+
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="example-container">
+
+												<mat-form-field>
+													<mat-select name="services" [(ngModel)]="serviceDetailSelected" placeholder="Seleccione uno o mas servicios" multiple required>
+														<mat-option *ngFor="let serviceDetail of serviceDetails" [value]="serviceDetail.id">{{serviceDetail.name}}</mat-option>
+													</mat-select>
+												</mat-form-field>
+											</div>
+										</div>
+									</div>
+
+									<div class="row">
+										<div class="col-sm-12">
+											<a [routerLink]="['/auth/admin/configurations/service-detail/create']">¿Nuevo Servicio?</a>
+										</div>
+									</div>
+
+									<br>
+
+									<div class="row">
+										<div class="col-sm-12">
+											<button mat-raised-button color="primary" class="mr-3" type="submit" [disabled]="!updateForm.form.valid">Asignar</button>
+										</div>
+									</div>
+								</form>
+								<hr>
+
+								<div *ngIf="serviceDetailsV.length>0">
+									<div class="row">
+										<div class="col-sm-12">
+											<mat-list>
+												<mat-list-item *ngFor="let serviceDetail of serviceDetailsV">
+													<h4 mat-line>{{serviceDetail.name}}</h4>
+													<button mat-icon-button color="warn" matTooltip="Borrar Servicio" matTooltipPosition="left" (click)="onDelete(serviceDetail.id)"><mat-icon>delete</mat-icon></button>
+												</mat-list-item>
+											</mat-list>
+										</div>
+									</div>
+								</div>
+
+								<div *ngIf="serviceDetailsV.length<=0">
+									<div class="row">
+										<div class="col-sm-12">
+											<mat-list>
+												<mat-list-item>
+													<h4 mat-line>No tiene servicios</h4>
+												</mat-list-item>
+											</mat-list>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</mat-card-content>
+				</mat-card>
+			</div>
+		</div>
+
+	</div>
+	<div *ngIf="total<=0">
+		<h3 class="text-center">{{ message }} <a [routerLink]="['/auth/admin/configurations/catalog/variety/create']">¿Nueva Variedad?</a></h3>
+	</div>
+</div>

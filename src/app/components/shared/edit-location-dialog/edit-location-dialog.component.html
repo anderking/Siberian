@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Actualizar dirección</h1>
+<div mat-dialog-content>
+	<form #updateForm="ngForm" (ngSubmit)="save(updateForm)">
+		<mat-form-field>
+			<input matInput name="address" placeholder="Dirección" [(ngModel)]="data.location.address" required>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput name="state" placeholder="Estado" [(ngModel)]="data.location.state" required>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput name="city" placeholder="Ciudad" [(ngModel)]="data.location.city" required>
+		</mat-form-field>
+		<mat-form-field>
+			<input matInput name="postalCode" placeholder="Código Postal" [(ngModel)]="data.location.postalCode" required>
+		</mat-form-field>
+
+		<div mat-dialog-actions>
+			<p class="text-center">
+				<button mat-raised-button color="warn" [mat-dialog-close]="false">Cancelar</button>
+				<button type="submit" mat-raised-button color="primary" [disabled]="!updateForm.form.valid">Guardar</button>
+			</p>
+		</div>
+	</form>
+</div>

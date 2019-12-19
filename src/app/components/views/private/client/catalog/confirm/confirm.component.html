@@ -1,0 +1,55 @@
+<div class="main_sheet">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h2 class="text-center">Ficha del Equipo</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<button mat-raised-button color="primary"  (click)="goBack()">Volver</button>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-sm-6 offset-sm-3">
+				<div class="row">
+					<div class="col-sm-12">
+						<mat-card class="servicio">
+							<mat-card-header class="titulo">
+								<mat-card-title>{{ equipinfrasName }} </mat-card-title>
+							</mat-card-header>
+							<mat-card-content class="mat_card_content">
+								<div class="row">
+									<div class="col-sm-6">
+										<img src="../../../../assets/img/catalogue/aire.png" alt="" class="card-img-top">
+									</div>
+									<div class="col-sm-6">
+										<b>Marca: </b> {{ varietyName }}
+										<br>
+										<b>Modelo: </b>{{ varietyDetailName }}
+										<br>
+										<b>Descripción: </b> {{ varietyDetailDescription }}
+										<br>
+										<b>Categoría: </b> {{ categoryName }}
+										<br>
+										<b>Subcategoría: </b>{{ subcategoryName }}
+									</div>
+								</div>
+							</mat-card-content>
+							<mat-card-actions class="titulo">
+								<div class="container">
+									<div class="row">
+										<div class="col-sm-12">
+											<button mat-raised-button color="primary" [routerLink]="['/auth/client/request/stepper',{data:requestParams}]">Solicitar</button>
+										</div>
+									</div>
+								</div>
+							</mat-card-actions>
+						</mat-card>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,369 @@
+<div class="container">
+	<h2 *ngIf="serviceDetail" class="text-center">Detalle Servicio</h2>
+	<button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+	<hr>
+	<div *ngIf="serviceDetail">
+  
+	  <div class="row">
+		<div class="col-sm-12">
+		  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+			<ng-container matColumnDef="name">
+				<th mat-header-cell *matHeaderCellDef> Nombre </th>
+				<td mat-cell *matCellDef="let row"> {{row.name}} </td>
+			</ng-container>
+
+			<ng-container matColumnDef="estimatedPrice">
+				<th mat-header-cell *matHeaderCellDef> Precio Estimado </th>
+				<td mat-cell *matCellDef="let row"> {{row.estimatedPrice}} </td>
+			</ng-container>
+
+			<ng-container matColumnDef="estimatedWarrantyTime">
+				<th mat-header-cell *matHeaderCellDef> Tiempo Estimado </th>
+				<td mat-cell *matCellDef="let row"> {{row.estimatedWarrantyTime}}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="note">
+				<th mat-header-cell *matHeaderCellDef> Nota </th>
+				<td mat-cell *matCellDef="let row"> {{row.note}}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="serviceType">
+				<th mat-header-cell *matHeaderCellDef> Tipo de Servicio </th>
+				<td mat-cell *matCellDef="let row"> {{row.serviceType}}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="ComponentId">
+				<th mat-header-cell *matHeaderCellDef> Componente </th>
+				<td mat-cell *matCellDef="let row"> {{row.component.name}}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="status">
+				<th mat-header-cell *matHeaderCellDef> Estatus </th>
+				<td mat-cell *matCellDef="let row">
+					<span *ngIf="row.status=='active'" class="badge badge-success">{{row.status | titlecase}}</span>
+					<span *ngIf="row.status=='deleted'" class="badge badge-danger">{{row.status | titlecase}}</span>
+				</td>
+			</ng-container>
+  
+			<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+			<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+		  </table>
+		</div>
+	  </div>
+  
+	  <br>
+  
+	  <div class="row">
+		<div class="col-sm-12">
+		  <h2 class="text-center">Actividades</h2>
+		</div>
+    </div>
+    
+    <div class="row">
+      <div class="col-sm-12">
+        <button mat-raised-button color="primary" class="mr-3" [routerLink]="['/auth/admin/configurations/service-detail',serviceDetail.id,'addActivity']" matTooltip="Asignar Actividad" matTooltipPosition="above"><mat-icon>add</mat-icon></button>
+      </div>
+    </div>
+
+	  <hr>
+  
+	  <div *ngIf=" activities">
+  
+		<div class="row">
+		  <div class="col-sm-12">
+			<mat-form-field>
+			  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+			</mat-form-field>
+		  </div>
+		</div>
+  
+		<div class="row">
+		  <div class="col-sm-12">
+			<div class="mat-elevation-z8">
+  
+			  <div *ngIf=" activities.length<=0 && !failedConect">
+				<div class="row">
+				  <div class="col-sm-12">
+					<h3 class="text-center mt-3 mb-3">Este Detalle Servicio no tiene actividades asociadas</h3>
+				  </div>
+				</div>
+			  </div>
+  
+  
+			  <table *ngIf=" activities.length>0" mat-table [dataSource]="dataSourceA">
+  
+				<ng-container matColumnDef="name">
+				  <th mat-header-cell *matHeaderCellDef> Nombre </th>
+				  <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+				</ng-container>
+	  
+				<ng-container matColumnDef="description">
+				  <th mat-header-cell *matHeaderCellDef> Descripción </th>
+				  <td mat-cell *matCellDef="let row"> {{ row.description }} </td>
+				</ng-container>
+	  
+				<ng-container matColumnDef="estimatedTime">
+          <th mat-header-cell *matHeaderCellDef> Tiempo Estimado </th>
+          <td mat-cell *matCellDef="let row"> {{row.estimatedTime}}</td>
+        </ng-container>
+  
+				<ng-container matColumnDef="difficultyDegree">
+					<th mat-header-cell *matHeaderCellDef> Grado de Dificultad </th>
+					<td mat-cell *matCellDef="let row"> {{ row.difficultyDegree}} </td>
+          </ng-container>
+          
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Estatus </th>
+            <td mat-cell *matCellDef="let row">
+              <span *ngIf="row.status=='active'" class="badge badge-success">{{row.status | titlecase}}</span>
+              <span *ngIf="row.status=='deleted'" class="badge badge-danger">{{row.status | titlecase}}</span>
+            </td>
+          </ng-container>
+      
+  
+				<tr mat-header-row *matHeaderRowDef="displayedColumnsA"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumnsA;">
+				</tr>
+			  </table>
+  
+			 
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+
+	  <br>
+  
+	  <div class="row">
+		<div class="col-sm-12">
+		  <h2 class="text-center">Políticas</h2>
+		</div>
+	  </div>
+  
+    <div class="row">
+      <div class="col-sm-12">
+        <button mat-raised-button color="primary" class="mr-3" [routerLink]="['/auth/admin/configurations/service-detail',serviceDetail.id,'addPolitic']" matTooltip="Asignar Política" matTooltipPosition="above"><mat-icon>add</mat-icon></button>
+      </div>
+    </div>
+	  <hr>
+  
+	  <div *ngIf="policies">
+  
+		<div class="row">
+		  <div class="col-sm-12">
+			<mat-form-field>
+			  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+			</mat-form-field>
+		  </div>
+		</div>
+  
+		<div class="row">
+		  <div class="col-sm-12">
+			<div class="mat-elevation-z8">
+  
+			  <div *ngIf="policies.length<=0 && !failedConect">
+				<div class="row">
+				  <div class="col-sm-12">
+					<h3 class="text-center mt-3 mb-3">Este Detalle Servicio no tiene políticas asociadas</h3>
+				  </div>
+				</div>
+			  </div>
+  
+  
+			  <table *ngIf="policies.length>0" mat-table [dataSource]="dataSourceP">
+  
+	  
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let row"> {{ row.description }} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="actionPlan">
+            <th mat-header-cell *matHeaderCellDef> Plan de Acción </th>
+            <td mat-cell *matCellDef="let row"> {{row.actionPlan}}</td>
+          </ng-container>
+    
+            
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Estatus </th>
+              <td mat-cell *matCellDef="let row">
+                <span *ngIf="row.status=='active'" class="badge badge-success">{{row.status | titlecase}}</span>
+                <span *ngIf="row.status=='deleted'" class="badge badge-danger">{{row.status | titlecase}}</span>
+              </td>
+            </ng-container>
+  
+				<tr mat-header-row *matHeaderRowDef="displayedColumnsP"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumnsP;">
+				</tr>
+			  </table> 
+			</div>
+		  </div>
+		</div>
+	  </div>
+    
+    <br>
+  
+	  <div class="row">
+		<div class="col-sm-12">
+		  <h2 class="text-center">Recursos</h2>
+		</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <button mat-raised-button color="primary" class="mr-3" [routerLink]="['/auth/admin/configurations/service-detail',serviceDetail.id,'addResource']" matTooltip="Asignar Recurso" matTooltipPosition="above"><mat-icon>add</mat-icon></button>
+    </div>
+  </div>
+  
+    <hr>
+  
+	  <div *ngIf="resources">
+  
+		<div class="row">
+		  <div class="col-sm-12">
+			<mat-form-field>
+			  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+			</mat-form-field>
+		  </div>
+		</div>
+  
+		<div class="row">
+		  <div class="col-sm-12">
+			<div class="mat-elevation-z8">
+  
+			  <div *ngIf="resources.length<=0 && !failedConect">
+				<div class="row">
+				  <div class="col-sm-12">
+					<h3 class="text-center mt-3 mb-3">Este Detalle Servicio no tiene Recursos asociados</h3>
+				  </div>
+				</div>
+			  </div>
+  
+  
+			  <table *ngIf="resources.length>0" mat-table [dataSource]="dataSourceR">
+  
+	  
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let row"> {{ row.description }} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="resourceType">
+            <th mat-header-cell *matHeaderCellDef> Tipo de Recurso </th>
+            <td mat-cell *matCellDef="let row"> {{row.resourceType}}</td>
+          </ng-container>
+    
+          <ng-container matColumnDef="measureUnit">
+            <th mat-header-cell *matHeaderCellDef> Unidad de Medida </th>
+            <td mat-cell *matCellDef="let row"> {{row.measureUnit}}</td>
+          </ng-container>
+            
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Precio</th>
+            <td mat-cell *matCellDef="let row"> {{row.price}}</td>
+          </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Estatus </th>
+              <td mat-cell *matCellDef="let row">
+                <span *ngIf="row.status=='active'" class="badge badge-success">{{row.status | titlecase}}</span>
+                <span *ngIf="row.status=='deleted'" class="badge badge-danger">{{row.status | titlecase}}</span>
+              </td>
+            </ng-container>
+  
+				<tr mat-header-row *matHeaderRowDef="displayedColumnsR"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumnsR;">
+				</tr>
+			  </table> 
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+
+    <br>
+  
+	  <div class="row">
+		<div class="col-sm-12">
+		  <h2 class="text-center">Habilidades</h2>
+		</div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <button mat-raised-button color="primary" class="mr-3" [routerLink]="['/auth/admin/configurations/service-detail',serviceDetail.id,'addSkill']" matTooltip="Asignar Habilidad" matTooltipPosition="above"><mat-icon>add</mat-icon></button>
+    </div>
+  </div>
+  
+    <hr>
+  
+	  <div *ngIf="skills">
+  
+		<div class="row">
+		  <div class="col-sm-12">
+			<mat-form-field>
+			  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+			</mat-form-field>
+		  </div>
+		</div>
+  
+		<div class="row">
+		  <div class="col-sm-12">
+			<div class="mat-elevation-z8">
+  
+			  <div *ngIf="skills.length<=0 && !failedConect">
+				<div class="row">
+				  <div class="col-sm-12">
+					<h3 class="text-center mt-3 mb-3">Este Detalle Servicio no tiene Habilidades asociadas</h3>
+				  </div>
+				</div>
+			  </div>
+  
+  
+			  <table *ngIf="skills.length>0" mat-table [dataSource]="dataSourceS">
+  
+	  
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+          </ng-container>
+      
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let row"> {{ row.description }} </td>
+          </ng-container>
+      
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef> Estatus </th>
+              <td mat-cell *matCellDef="let row">
+                <span *ngIf="row.status=='active'" class="badge badge-success">{{row.status | titlecase}}</span>
+                <span *ngIf="row.status=='deleted'" class="badge badge-danger">{{row.status | titlecase}}</span>
+              </td>
+            </ng-container>
+  
+				<tr mat-header-row *matHeaderRowDef="displayedColumnsS"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumnsS;">
+				</tr>
+			  </table> 
+			</div>
+		  </div>
+		</div>
+    </div>
+    
+	</div>
+  
+  
+  
+  </div>

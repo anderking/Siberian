@@ -1,0 +1,23 @@
+<h1 mat-dialog-title class="text-center">Rechazar Solicitud</h1>
+<div mat-dialog-content>
+	<form #updateForm="ngForm" (ngSubmit)="save(updateForm)">
+
+		<mat-form-field>
+			<mat-select name="motive" [(ngModel)]="motiveSelected" placeholder="Seleccione un Motivo" required>
+				<mat-option *ngFor="let motive of motives" [value]="motive.id">{{ motive.name }}</mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<mat-form-field>
+			<textarea name="note" [(ngModel)]="note" matInput placeholder="Nota"></textarea>
+		</mat-form-field>
+
+
+		<div mat-dialog-actions>
+			<p class="text-center">
+				<button mat-raised-button color="warn" [mat-dialog-close]="false">Cancelar</button>
+				<button type="submit" mat-raised-button color="primary" [disabled]="!updateForm.form.valid">Enviar</button>
+			</p>
+		</div>
+	</form>
+</div>

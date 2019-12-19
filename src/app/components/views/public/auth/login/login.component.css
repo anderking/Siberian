@@ -1,0 +1,58 @@
+.login-block{
+  background: #fff;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #121212, #0B173B); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  float:left;
+  width:100%;
+  height: 100%;
+  padding : 50px 0;
+}
+.banner-sec{background:url(https://static.pexels.com/photos/33972/pexels-photo.jpg)  no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 10px 10px 10px 10px; padding:0;}
+.container{background:#303030; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);}
+.carousel-inner{border-radius:0 10px 10px 0;}
+.carousel-caption{text-align:left; left:5%;}
+.login-sec{position:relative; text-align: center;  background-color: #e4e3e3; border-radius:10px 0 0 10px;}
+.login-sec .copy-text{position:absolute; width:80%; bottom:20px; font-size:13px; text-align:center;color:#fff;}
+.login-sec .copy-text i{color:#FEB58A;}
+.login-sec .copy-text a{color:#2F74CF;}
+.login-sec h2{margin:1rem 0; font-weight:800; font-size:30px; color: #fff;}
+.login-sec h2:after{content:" "; width:100px; height:5px; background:#242451;color:#fff; display:block; margin-top:20px; border-radius:3px; margin-left:auto;margin-right:auto}
+.login-sec button {background-color: #242451; color:#fff;}
+.btn-login{background: #2F74CF; color:#fff; font-weight:600;}
+.banner-text{width:70%; position:absolute; bottom:40px; padding-left:20px;}
+.banner-text h2{color:#fff; font-weight:600;}
+.banner-text h2:after{content:" "; width:100px; height:5px; background:#FFF; display:block; margin-top:20px; border-radius:3px;}
+.banner-text p{color:#fff;}
+
+.form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.form button:hover, .form button:active, .form button:focus {
+  background: #242451;
+}
+
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #242451;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  /*color: #FFFFFF;*/
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.login-form{
+  margin: 3rem 2rem;
+}

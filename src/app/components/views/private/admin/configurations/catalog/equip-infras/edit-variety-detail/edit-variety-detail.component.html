@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 offset-2">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="text-center">Editar Modelo</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <button mat-raised-button color="primary" (click)="goBack()">Volver</button>
+        </div>
+      </div>
+      <hr>
+      
+      <div *ngIf="varietyDetail">
+
+        <form #updateForm="ngForm" (ngSubmit)="update(updateForm)">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="example-container">
+
+                <mat-form-field>
+                  <input matInput id="inputName" name="name" placeholder="Nombre" [(ngModel)]="varietyDetail.name" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <textarea matInput name="description" placeholder="Descripción" [(ngModel)]="varietyDetail.description" required></textarea>
+                </mat-form-field> 
+
+              </div>
+            </div>
+          </div>
+          
+      
+      <div class="row">
+        <div class="col-sm-12">
+          <button mat-raised-button color="primary" type="submit">Guardar</button>
+        </div>
+      </div>
+    </form>
+    </div>
+
+      <div *ngIf="!varietyDetail && !failedConect">
+        <div class="row">
+          <div class="col-sm-12 spinner">
+            <mat-spinner></mat-spinner>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="failedConect">
+        <h6 class="text-center">{{failedConect}}</h6>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,89 @@
+<div class="container">
+
+	<div class="row">
+		<div class="col-sm-12">
+			<h2 class="text-center">Nueva Promoción</h2>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-sm-12">
+			<button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+		</div>  
+	</div>
+
+	<hr>
+
+	<div class="row">
+		<div class="col-sm-12">
+			<mat-card>
+				<mat-card-header class="titulo border-top-danger">
+					<mat-card-title>Promoción</mat-card-title>
+				</mat-card-header>
+				<mat-card-content>
+					<div class="row">
+						<div class="col-sm-8 offset-2">
+							<form #registerForm="ngForm" (ngSubmit)="register(registerForm)" enctype="multipart/form-data">
+								<br>
+
+								<mat-form-field>
+									<input matInput  name="name" placeholder="Nombre" [(ngModel)]="name" required>
+								</mat-form-field>
+
+								<mat-form-field>
+									<input matInput name="description" placeholder="Descripción" [(ngModel)]="description" required>
+								</mat-form-field>
+
+								<mat-form-field>
+									<mat-select name="type" [(ngModel)]="typeSelected" placeholder="Seleccione un Tipo de Promoción" (ngModelChange)="changeType($event)" required>
+										<mat-option *ngFor="let type of types" [value]="type.id">{{ type.name }}</mat-option>
+									</mat-select>
+								</mat-form-field>
+
+								<div class="promotion_create" [class.open]="isSubcategory" [class.closed]="!isSubcategory">
+									<mat-form-field>
+										<mat-select name="subcategory" [(ngModel)]="subcategorySelected" placeholder="Seleccione una Subcategoría">
+											<mat-option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{ subcategory.name }}</mat-option>
+										</mat-select>
+									</mat-form-field>
+								</div>
+
+								<div class="promotion_create" [class.open]="isEquipinfras" [class.closed]="!isEquipinfras">
+									<mat-form-field>
+										<mat-select name="equipinfras" [(ngModel)]="equipinfrasSelected" placeholder="Seleccione un Equipo o Infraestructura">
+											<mat-option *ngFor="let equipinfra of equipinfras" [value]="equipinfra.id">{{ equipinfra.name }}</mat-option>
+										</mat-select>
+									</mat-form-field>
+								</div>
+
+								<mat-form-field>
+									<input matInput name="percentDiscount" placeholder="Porcentaje de Descuento" [(ngModel)]="percentDiscount" required>
+								</mat-form-field>
+								
+								<mat-form-field class="example-full-width">
+									<input name="dateStart" [(ngModel)]="dateStart" matInput [matDatepicker]="pickerStart" placeholder="Elija una fecha de Inicio" [min]="minDateStart" required>
+									<mat-datepicker-toggle matSuffix [for]="pickerStart"></mat-datepicker-toggle>
+									<mat-datepicker touchUi #pickerStart></mat-datepicker>
+								</mat-form-field>
+
+
+								<mat-form-field class="example-full-width">
+									<input name="dateEnd" [(ngModel)]="dateEnd" matInput [matDatepicker]="pickerEnd" placeholder="Elija una fecha de Finalización" [min]="dateStart" required>
+									<mat-datepicker-toggle matSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+									<mat-datepicker touchUi #pickerEnd></mat-datepicker>
+								</mat-form-field>
+
+								<div class="row">
+									<div class="col-sm-12">
+										<button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.form.valid">Registrar</button>
+									</div>
+								</div>
+
+							</form>
+						</div>
+					</div>
+				</mat-card-content>
+			</mat-card>
+		</div>
+	</div>
+</div>

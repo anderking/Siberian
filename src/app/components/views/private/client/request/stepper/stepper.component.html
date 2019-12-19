@@ -1,0 +1,211 @@
+<div class="main_stepper">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h2 class="text-center">Complete los pasos siguientes</h2>
+				<h4 class="text-center">Solicitud de servicio - {{equipinfrasName}}</h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<button mat-raised-button matTooltip="Volver" matTooltipPosition="above" color="primary" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-sm-12">
+
+				<mat-horizontal-stepper #stepper>
+
+					<mat-step >
+						<form >
+							<ng-template matStepLabel>Descripción</ng-template>
+							<div class="row">
+								<div class="col-sm-6 offset-sm-3">
+									<h4 *ngIf="user" class="text-center mt-3 mb-3">{{user.firstName | titlecase }} {{user.lastName | titlecase}}</h4>
+
+									<mat-form-field>
+										<mat-select name="variety" [(ngModel)]="varietySelected" placeholder="Seleccione una Marca" (ngModelChange)="changeVariety($event)" required>
+											<mat-option *ngFor="let variety of varieties" [value]="variety.id">{{ variety.name }}</mat-option>
+										</mat-select>
+									</mat-form-field>
+
+
+									<div class="lender_available" [class.open]="isVariety" [class.closed]="!isVariety">
+										<mat-form-field>
+											<mat-select name="varietyDetail" [(ngModel)]="varietyDetailSelected" placeholder="Seleccione un Modelo" (ngModelChange)="changeVarietyDetail($event)" required>
+												<mat-option *ngFor="let varietyDetail of varietyDetails" [value]="varietyDetail.id">{{ varietyDetail.name }} - {{ varietyDetail.description }}</mat-option>
+											</mat-select>
+										</mat-form-field>
+									</div>
+
+									<div class="lender_available" [class.open]="isVarietyDetail" [class.closed]="!isVarietyDetail">
+										<mat-form-field>
+											<textarea matInput name="descriptionProblem" [(ngModel)]="descriptionProblem" placeholder="Descripción del Problema" required></textarea>
+										</mat-form-field>
+									</div>
+
+									<mat-form-field>
+										<mat-select name="address" (ngModelChange)="changeLocation($event)" [(ngModel)]="address" placeholder="Seleccione una Dirección" required>
+											<mat-option *ngFor="let locationUser of locationsUser" [value]="locationUser.id" >{{ locationUser.address }}</mat-option>
+										</mat-select>
+									</mat-form-field>
+
+									<a class="addLocation" (click)="onAddLocation()" ><mat-icon>add</mat-icon>¿Nueva Dirección?</a>
+
+									<br>
+									<div class="mt-3">
+										<mat-label>Subir Foto del Equipo (Opcional)</mat-label>
+										<div class="row">
+											<div class="col-sm-12">
+												<input name="image_url" [(ngModel)]="image_url" type="file"/>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+							<div>
+								<button  mat-raised-button color="primary" class="mr-3" matStepperNext>Siguiente</button>
+							</div>
+						</form>
+					</mat-step>
+
+					<mat-step >
+						<ng-template matStepLabel>Fecha y Pestador</ng-template>
+
+							<div *ngIf="modeloId">
+								<form >
+									<div class="row">
+										<div class="offset-sm-4 col-sm-4">
+											<mat-form-field class="example-full-width">
+												<input name="dateRevision" [(ngModel)]="dateRevision" matInput [matDatepicker]="picker" placeholder="Elija una fecha"  [min] = "minDate" (dateChange)="changeDate('change', $event)" required>
+												<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+												<mat-datepicker touchUi #picker></mat-datepicker>
+											</mat-form-field>
+										</div>
+									</div>
+									<div class="lender_available" [class.open]="isDate" [class.closed]="!isDate">
+										<div class="row">
+											<div class="offset-sm-4 col-sm-4">
+												<mat-form-field>
+													<mat-select name="turn" [(ngModel)]="turnSelected" placeholder="Seleccione un Turno" (ngModelChange)="changeTurn($event)" required>
+														<mat-option *ngFor="let turn of turns" [value]="turn.id">{{ turn.name }}</mat-option>
+													</mat-select>
+												</mat-form-field>
+											</div>
+										</div>
+									</div>
+									<div class="lender_available" [class.open]="isTurn" [class.closed]="!isTurn">
+										<h4 class="text-center mb-3">Prestadores disponibles</h4>
+										
+										<mat-radio-group aria-label="test" name="lender" [(ngModel)]="lenderSelected" (change)="changeLender($event)">
+											<mat-radio-button class="col-md-3" *ngFor="let lender of lenders | slice:0:4" [value]="lender.id">
+												<mat-card>
+													<mat-card-header class="titulo">
+															<mat-card-title>{{lender.firstName | titlecase }} {{lender.lastName | titlecase}}</mat-card-title>
+													</mat-card-header>	
+												
+													<mat-card-content  class="titulo lenderOption">
+														<img [src]="lender.imageUrl || '../../../../assets/img/profile/avatar.png'" alt="" class="card-img">
+														<div class="row">
+															<div class="col-sm-12">
+																<div class="ec-stars-wrapper">
+																	<a [routerLink]="['/auth/profile']" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+																	<a [routerLink]="['/auth/profile']" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+																	<a [routerLink]="['/auth/profile']" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+																	<a [routerLink]="['/auth/profile']" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+																	<a [routerLink]="['/auth/profile']" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+																</div>
+															</div>
+														</div>
+													</mat-card-content>
+												</mat-card>
+
+											</mat-radio-button>
+										</mat-radio-group>
+										
+									</div>
+								</form>
+							</div>
+
+							<div *ngIf="!modeloId">
+								<div class="row">
+									<div class="col-sm-12">
+										<h4 class="text-center">Escoja un modelo de equipo para continuar</h4>
+									</div>
+								</div>
+							</div>
+
+							<div class="mt-3">
+								<button  mat-raised-button color="primary" class="mr-3" matStepperPrevious>Atras</button>
+								<button  mat-raised-button color="primary" class="mr-3" matStepperNext>Siguiente</button>
+							</div>
+
+					</mat-step>
+
+					<mat-step >
+						<ng-template matStepLabel>Ficha de Confirmación</ng-template>
+
+						<div *ngIf="lenderId">
+							<div class="row stepper_ficha">
+								<div class="col-sm-8 offset-sm-2">
+									<div class="row">
+										<div class="col-sm-12">
+											<mat-card class="servicio">
+												<mat-card-header class="titulo">
+													<mat-card-title>{{ equipinfrasName }}</mat-card-title>
+												</mat-card-header>
+												<mat-card-content class="mat_card_content">
+													<div class="row">
+														<div class="col-sm-6">
+															<img [src]="equipinfras?.imageUrl" alt="" class="card-img-top">
+														</div>
+														<div class="col-sm-6">
+															<b>Marca: </b> {{ varietyName }}
+															<br>
+															<b>Modelo: </b> {{ varietyDetailName }} - {{ varietyDetailDescription }}
+															<br>
+															<b>Categoría: </b> {{ categoryName }}
+															<br>
+															<b>Subcategoría: </b> {{ subcategoryName }}
+															<br>
+															<b>Descripción del Problema: </b> {{ descriptionProblem }}
+															<br>
+															<b>Prestador Asignado: </b> {{ lenderName }}
+															<br>
+															<b>Fecha de Revisión: </b> {{ dateRevision | date: 'dd/MM/yyyy' }}
+															<br>
+															<b>Turno: </b> {{ turnText}}
+															<br>
+															<b>Dirección: </b> {{ addressFull }}
+														</div>
+													</div>
+												</mat-card-content>
+											</mat-card>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div *ngIf="!lenderId">
+							<div class="row">
+								<div class="col-sm-12">
+									<h4 class="text-center">Debe indicar la fecha y el tecnico para continuar</h4>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<button  mat-raised-button color="primary" class="mr-3" matStepperPrevious>Atras</button>
+							<button mat-raised-button color="primary" (click)="onConfirm()" [disabled]="!lenderId">Confirmar Solicitud</button>
+						</div>
+					</mat-step>
+
+				</mat-horizontal-stepper>
+
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 offset-2">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="text-center">Editar Promoción Parámetro</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <button mat-raised-button color="primary" [routerLink]="['/auth/admin/configurations/promotion/promotion-target']">Volver</button>
+        </div>
+      </div>
+      <hr>
+      
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="example-container">
+            
+              <mat-form-field>
+                  <mat-select placeholder="Promoción" required>
+                  <mat-option value="option">Promoción 1</mat-option>
+                   <mat-option value="option">Promoción 2</mat-option>
+                   <mat-option value="option">Promoción 3</mat-option>
+                    </mat-select>
+                      </mat-form-field>        
+                    
+            <mat-form-field>
+                <mat-select placeholder="Parámetro" required>
+                <mat-option value="option">Parámetro 1</mat-option>
+                <mat-option value="option">Parámetro 2</mat-option>
+                <mat-option value="option">Parámetro 3</mat-option>
+                 </mat-select>
+                    </mat-form-field>
+    
+          <mat-form-field [hidden]="true">
+            <input matInput  placeholder="Estatus" value="A">
+          </mat-form-field>
+
+          <br>
+          
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <button mat-raised-button color="primary" [routerLink]="['/auth/admin/configurations/promotion/promotion-target/edit']">Guardar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

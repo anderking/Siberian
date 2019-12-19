@@ -1,0 +1,74 @@
+<div class="container">
+
+	<div class="row">
+	  <div class="col-sm-12">
+		<h2 class="text-center">Nuevo Usuario</h2>
+	  </div>
+	</div>
+	
+	<div class="row">
+	  <div class="col-sm-12">
+		<button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+  
+	  </div>  
+	</div>
+	
+	<hr>
+  
+	  <div class="row">
+		<div class="col-sm-12">
+		  <mat-card>
+			<mat-card-header class="titulo border-top-danger">
+			  <mat-card-title>Usuario</mat-card-title>
+			</mat-card-header>
+			<mat-card-content>
+			  <div class="row">
+				<div class="col-sm-8 offset-2">
+					<br>
+				  <form #registerForm="ngForm" (ngSubmit)="register(registerForm)" enctype="multipart/form-data">
+					<mat-form-field>
+						<input matInput name="email" [(ngModel)]="email" placeholder="Email" required>
+					</mat-form-field>
+
+					   <mat-form-field>
+						<input matInput name="password" [(ngModel)]="password" type ="password" placeholder="Contraseña" required>
+					</mat-form-field>
+
+					<mat-form-field>
+						<input matInput name="firstName" [(ngModel)]="firstName" placeholder="Nombre" required>
+					</mat-form-field>
+
+					<mat-form-field>
+						<input matInput name="lastName" [(ngModel)]="lastName" placeholder="Apellido" required>
+					</mat-form-field>
+
+					<mat-form-field>
+					  <mat-select name="dniType" [(ngModel)]="dniTypeSelected" placeholder="Seleccione un Tipo de Dni" required>
+						<mat-option *ngFor="let dniType of dniTypes" [value]="dniType.id">{{ dniType.name }}</mat-option>
+					  </mat-select>
+					</mat-form-field>
+
+					<mat-form-field>
+						<input matInput name="dni" [(ngModel)]="dni" placeholder="Cédula" required>
+					</mat-form-field>
+
+					<mat-form-field>
+					  <mat-select name="RoleId" [(ngModel)]="roleSelected" placeholder="Seleccione un Rol" required>
+						<mat-option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</mat-option>
+					  </mat-select>
+					</mat-form-field>
+
+					<div class="row">
+					  <div class="col-sm-12">
+						<button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.form.valid">Registrar</button>
+					  </div>
+					</div>
+				  </form>
+				</div>
+			  </div>
+			</mat-card-content>
+		  </mat-card>
+		</div>
+	</div>
+	  
+  </div>

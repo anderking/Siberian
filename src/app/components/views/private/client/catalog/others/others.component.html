@@ -1,0 +1,58 @@
+<div class="main_variety">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h2 class="text-center">Especifique un Equipo y Servicio que necesite</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				<button mat-raised-button color="primary" [routerLink]="['/auth/client/catalog/catalogs']">Volver</button>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-sm-4 offset-sm-4">
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="example-container">
+							<mat-form-field>
+							  <mat-label>Tipo de Servicio</mat-label>
+							  <mat-select [(value)]="selected">
+							    <mat-option value="R">Reparación</mat-option>
+								<mat-option value="M">Mantenimiento</mat-option>
+								<mat-option value="C">Construcción</mat-option>
+								<mat-option value="O">Otros</mat-option>
+							  </mat-select>
+							</mat-form-field>
+							<mat-form-field class="input_other" [class.open]="selected=='O'" [class.closed]="selected!='O'">
+								<input matInput placeholder="Otro Servicio">
+							</mat-form-field>
+
+							<mat-form-field>
+								<input matInput placeholder="Nombre del Equipo" required>
+							</mat-form-field>
+
+							<mat-form-field>
+								<input matInput placeholder="Marca" required/>
+							</mat-form-field>	
+
+							<mat-form-field>
+								<input matInput placeholder="Modelo"required>
+							</mat-form-field>
+
+							<mat-form-field [hidden]="true">
+								<input matInput value="true">
+							</mat-form-field>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<button (click)="onEnviar()" mat-raised-button color="primary">Enviar</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

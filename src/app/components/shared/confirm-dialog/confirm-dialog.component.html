@@ -1,0 +1,12 @@
+<div class="container">
+	<h1 mat-dialog-title class="text-center">Confirmar</h1>
+	<div mat-dialog-content>
+	  <p class="text-center">{{data.message}}</p>
+	</div>
+	<div mat-dialog-actions>
+	  <p class="text-center">
+	  	<button mat-raised-button color="warn" [mat-dialog-close]="false">No</button>
+	  	<button mat-raised-button color="accent" [mat-dialog-close]="true">Si</button>
+	  </p>
+	</div>
+</div>

@@ -1,0 +1,55 @@
+<div class="container">
+  <h2 *ngIf="resource" class="text-center">Recurso</h2>
+  <button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+  <hr>
+  <div *ngIf="resource">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let row"> {{ row.description }} </td>
+          </ng-container>
+
+           <ng-container matColumnDef="resourceType">
+            <th mat-header-cell *matHeaderCellDef> Tipo de Recurso </th>
+            <td mat-cell *matCellDef="let row"> {{ row.resourceType }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="price">
+            <th mat-header-cell *matHeaderCellDef> Precio </th>
+            <td mat-cell *matCellDef="let row"> {{ row.price }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="measureUnit">
+            <th mat-header-cell *matHeaderCellDef> Medida </th>
+            <td mat-cell *matCellDef="let row"> {{ row.measureUnit }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="serviceDetails">
+            <th mat-header-cell *matHeaderCellDef> Detalles de Servicio </th>
+            <td mat-cell *matCellDef="let row"> {{ row.serviceDetails.length }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Estatus </th>
+            <td mat-cell *matCellDef="let row">
+              <span *ngIf="row.status=='active'" class="badge badge-success">{{row.status | titlecase}}</span>
+              <span *ngIf="row.status=='deleted'" class="badge badge-danger">{{row.status | titlecase}}</span>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  
+</div>

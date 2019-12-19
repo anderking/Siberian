@@ -1,0 +1,21 @@
+/*Junior*/
+/*Dando estilo al toolbar
+10/07/2019*/
+.example-icon {
+  margin:0 .3rem;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar {
+  background: #0b173b !important;
+  color: #ffffff !important;
+  padding-right: 1.5% !important;
+  padding-left: 21% !important;
+}
+.cursor-pointer{
+	cursor:pointer;
+}
+

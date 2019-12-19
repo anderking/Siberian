@@ -1,0 +1,74 @@
+<div class="main_profile">
+	<div class="container-fluid" *ngIf="lender">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="pz bpi afo">
+					<div class="qf"></div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="qa avz">
+								<img  class="bpj" [src]="lender?.imageUrl || '../../../../../../assets/img/profile/avatar_2.png'" alt="..."/>
+								<h2 class="qb">
+									<h3>{{lender.firstName | titlecase }} {{lender.lastName | titlecase}}</h3>
+									<h6>Prestador</h6>
+									<div class="ec-stars-wrapper">
+										<a [routerLink]="['/auth/lender/profile/show/1']" data-value="1" title="Votar con 1 estrellas">&#9733;</a>
+										<a [routerLink]="['/auth/lender/profile/show/1']" data-value="2" title="Votar con 2 estrellas">&#9733;</a>
+										<a [routerLink]="['/auth/lender/profile/show/1']" data-value="3" title="Votar con 3 estrellas">&#9733;</a>
+										<a [routerLink]="['/auth/lender/profile/show/1']" data-value="4" title="Votar con 4 estrellas">&#9733;</a>
+										<a [routerLink]="['/auth/lender/profile/show/1']" data-value="5" title="Votar con 5 estrellas">&#9733;</a>
+									</div>
+								</h2>
+								<div class="row justify-content-center">
+									<input #File type="file" accept="image/*" style="display:none" (change)="uploadPic($event)"/>
+									<a mat-raised-button color="accent" (click)="file.nativeElement.click()">
+										<mat-icon>photo_library</mat-icon>
+										Cambiar Foto de Perfil
+									</a>
+									<button style="margin-left: 1rem;"mat-raised-button color="primary" [routerLink]="['/auth/lender/profile/edit',lender.id]">
+										<mat-icon>edit</mat-icon>
+										Editar Perfil
+									</button>
+								</div>
+								<br>
+							</div>
+						</div>
+					</div>
+
+					<div class="row box">
+						<div class="col-sm-12">
+							<mat-tab-group>
+								<mat-tab label="Mis Especialidades">
+									<mat-card *ngFor="let skill of  skills" class="lender_item">
+										<mat-card-title>
+											<b>{{ skill.name }}</b>
+										</mat-card-title>
+										<mat-card-content>
+											{{ skill.description }}
+										</mat-card-content>
+									</mat-card>
+								</mat-tab>
+
+								<mat-tab label="Datos">
+									<mat-list>
+										<h3 mat-subheader>Datos</h3>
+										<mat-list-item><h4 mat-line><b>Email: </b> {{ lender.email }}</h4></mat-list-item>
+										<mat-list-item><h4 mat-line><b>Nombre: </b> {{ lender.firstName }}</h4></mat-list-item>
+										<mat-list-item><h4 mat-line><b>Apellido: </b> {{ lender.lastName }}</h4></mat-list-item>
+										<mat-list-item><h4 mat-line><b>Dni: </b> {{ lender.dniType | titlecase}}-{{ lender.dni }}</h4></mat-list-item>
+										<mat-list-item><h4 mat-line><b>Género: </b> {{ lender.gender | titlecase }}</h4></mat-list-item>
+										<mat-list-item><h4 mat-line><b>Fecha de Nacimiento: </b> {{ lender.dateOfBirth }}</h4></mat-list-item>
+										<mat-list-item *ngIf="lender.status=='active'"><h4 mat-line><b>Estatus:<span class="badge badge-success"> Activo</span></b></h4></mat-list-item>
+										<mat-list-item *ngIf="lender.status=='inactive'"><h4 mat-line><b>Estatus:<span class="badge badge-success"> Inactivo</span></b></h4></mat-list-item>
+										<mat-list-item><h4 mat-line><b>Nota: </b> {{ lender.note }}</h4></mat-list-item>
+									</mat-list>
+								</mat-tab>
+
+							</mat-tab-group>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

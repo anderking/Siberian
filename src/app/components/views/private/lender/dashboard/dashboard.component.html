@@ -1,0 +1,136 @@
+<div class="main_dashboard">
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <a [routerLink]="['/auth/lender/calendar']">
+          <mat-card class="mat-card">
+            <mat-card-header>
+              <mat-card-title><b>Agenda</b></mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="mat_card_content">
+              <mat-icon class="dashboard_icon text-center">today</mat-icon>
+              <h3 class="text-center">Agenda</h3>
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+
+      <div class="col-sm-6">
+        <a [routerLink]="['/auth/lender/incidence']">
+          <mat-card class="mat-card">
+            <mat-card-header>
+              <mat-card-title><b>Incidencias</b></mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="mat_card_content">
+              <mat-icon class="dashboard_icon text-center">warning</mat-icon>
+              <h3 class="text-center">Incidencias</h3>
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <a [routerLink]="['/auth/lender/request']">
+          <mat-card class="mat-card">
+            <mat-card-header>
+              <mat-card-title><b>Solicitudes</b></mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="mat_card_content">
+              <mat-icon class="dashboard_icon text-center">assignment</mat-icon>
+              <h3 class="text-center">Solicitudes</h3>
+              <div class=row>
+                  <div class="col-md-4">
+                    <ul style="list-style-type:none;">
+                      <li> <span class="small mr-3">Solicitadas: <span class="badge badge-primary">{{totalRevisionRequested}}</span></span></li>
+                      <li> <span class="small mr-3">Aprobadas: <span class="badge badge-primary">{{totalRevisionApproved}}</span></span></li>
+                      
+                    </ul>
+                  </div>
+                  <div class="col-md-4">
+                      <ul style="list-style-type:none;" class="left" >
+                        <li ><span class="small mr-3">Rechazadas: <span class="badge badge-primary">{{totalRevisionRejected}}</span></span></li>
+                        <li><span class="small mr-3">Diagnosticadas: <span class="badge badge-primary">{{totalRevisionDiagnosticated}}</span></span></li>
+                        
+                      </ul>
+                  </div>
+                  <div class="col-md-4">
+                      <ul style="list-style-type:none;" >
+                          <li><span class="small mr-3">Irreparables: <span class="badge badge-primary">{{totalRevisionLost}}</span></span></li>
+                          <li><span class="small mr-3">Finalizadas: <span class="badge badge-primary">{{totalRevisionFinalized}}</span></span></li>
+                        
+                      </ul>
+                  </div>
+              </div>  
+
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+
+      <div class="col-sm-6">
+        <a [routerLink]="['/auth/lender/service']">
+          <mat-card class="mat-card">
+            <mat-card-header>
+              <mat-card-title><b>Servicios</b></mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="mat_card_content">
+              <mat-icon class="dashboard_icon text-center">assignment_ind</mat-icon>
+              <h3 class="text-center">Servicios</h3>
+              <div class="row">
+                  <div class="col-md-4">
+                    <ul style="list-style-type:none;"class="left">
+                      <li><span class="small mr-3">Cotizados: <span class="badge badge-primary">{{totalServiceOrderBudgeted}}</span></span></li>
+                      <li><span class="small mr-3">Aprobados: <span class="badge badge-primary">{{totalServiceOrderApproved}}</span></span></li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4">
+                    <ul style="list-style-type:none;">
+                      <li><span class="small mr-3">Rechazados: <span class="badge badge-primary">{{totalServiceOrderRejected}}</span></span></li>
+                      <li><span class="small mr-3">Finalizados: <span class="badge badge-primary">{{totalServiceOrderFinalized}}</span></span></li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4">
+                      <ul style="list-style-type:none;" class="left">
+                        <li> <span class="small mr-3">Garantía: <span class="badge badge-primary">{{totalServiceOrderWarranty}}</span></span></li>
+                        <li> <span class="small mr-3">OTRO<span class="badge badge-primary"></span></span></li>
+                      </ul>
+                  </div>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <a [routerLink]="['/auth/lender/claim']">
+          <mat-card class="mat-card">
+            <mat-card-header>
+              <mat-card-title><b>Reclamos</b></mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="mat_card_content">
+              <mat-icon class="dashboard_icon text-center">feedback</mat-icon>
+              <h3 class="text-center">Reclamos</h3>
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+</div>
+

@@ -1,0 +1,165 @@
+<div class="container">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="text-center">Editar Usuario</h2>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-sm-12">
+            <button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+      </div>  
+    </div>
+  
+    <hr>
+  
+  
+    <div *ngIf="user">
+  
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-card>
+            <mat-card-header class="titulo border-top-danger">
+              <mat-card-title>
+                {{ user.firstName }}
+              </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+              <div class="row">
+                <div class="col-sm-8 offset-2">
+                  <form #updateForm="ngForm" (ngSubmit)="update(updateForm)">
+					  <br>
+					<mat-form-field>
+						<input matInput name="email" [(ngModel)]="user.email" placeholder="Email" required>
+					</mat-form-field>
+
+					<!-- <mat-form-field>
+						<input matInput name="password" [(ngModel)]="user.password" placeholder="Contraseña">
+					</mat-form-field> -->
+
+					<mat-form-field>
+						<input matInput name="firstName" [(ngModel)]="user.firstName" placeholder="Nombre" required>
+					</mat-form-field>
+
+					<mat-form-field>
+						<input matInput name="lastName" [(ngModel)]="user.lastName" placeholder="Apellido" required>
+					</mat-form-field>
+
+					<mat-form-field>
+						<mat-select name="dniType" [(ngModel)]="user.dniType" placeholder="Tipo de Dni" required>
+							<mat-option *ngFor="let dniType of dniTypes" [value]="dniType.id">{{dniType.name}}</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+					<mat-form-field>
+						<input matInput name="dni" [(ngModel)]="user.dni" placeholder="DNI" required>
+					</mat-form-field>
+
+					<mat-form-field>
+						<mat-select name="gender" [(ngModel)]="user.gender" placeholder="Género">
+							<mat-option value="Masculino">Masculino</mat-option>
+							<mat-option value="Femenino">Femenino</mat-option>
+						</mat-select>
+					</mat-form-field>
+
+					<mat-form-field class="example-full-width">
+						<input matInput [matDatepicker]="picker" name="dateOfBirth" [(ngModel)]="user.dateOfBirth" placeholder="Fecha de Nacimiento" (dateChange)="addEvent('change', $event)">
+						<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+						<mat-datepicker touchUi #picker></mat-datepicker>
+					</mat-form-field>
+
+					<!-- <mat-label>Subir Imagen</mat-label>
+						<input id="fileInput" type="file"> -->
+
+						<mat-form-field>
+							<input matInput name="note" [(ngModel)]="user.note" placeholder="Nota">
+						</mat-form-field>
+
+						<mat-form-field>
+							<mat-select name="roleId" [(ngModel)]="user.role.id" placeholder="Seleccione un Rol" required>
+								<mat-option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</mat-option>
+							</mat-select>
+						</mat-form-field>
+
+					<!--
+					<div *ngIf="locationsCant>0">
+
+						<div *ngFor="let location of user.locations">
+
+							<div *ngIf="location.isLivingPlace==true">
+
+								<mat-form-field>
+									<input matInput name="address" [(ngModel)]="location.address" placeholder="Dirección">
+								</mat-form-field>
+
+								<mat-form-field>
+									<input matInput name="state" [(ngModel)]="location.state" placeholder="Estado">
+								</mat-form-field>
+
+								<mat-form-field>
+									<input matInput name="city" [(ngModel)]="location.city" placeholder="Ciudad">
+								</mat-form-field>
+
+								<mat-form-field>
+									<input matInput name="postalCode" [(ngModel)]="location.postalCode" placeholder="Código Postal">
+								</mat-form-field>
+
+							</div>
+
+						</div>
+
+					</div>
+
+					<div *ngIf="locationsCant<=0">
+
+						<mat-form-field>
+							<input matInput name="address" [(ngModel)]="address" placeholder="Dirección" required>
+						</mat-form-field>
+
+						<mat-form-field>
+							<input matInput name="state" [(ngModel)]="state" placeholder="Estado" required>
+						</mat-form-field>
+
+						<mat-form-field>
+							<input matInput name="city" [(ngModel)]="city" placeholder="Ciudad" required>
+						</mat-form-field>
+
+						<mat-form-field>
+							<input matInput name="postalCode" [(ngModel)]="postalCode" placeholder="Código Postal" required>
+						</mat-form-field>
+
+						<input type="hidden" name="isLivingPlace" value="true">
+						<input type="hidden" name="UserId" value="{{ user.id }}">
+
+					</div>-->
+
+  
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <button mat-raised-button color="primary" type="submit">Guardar</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  
+    <div *ngIf="!user && !failedConect">
+        <div class="row">
+          <div class="col-sm-12 spinner">
+            <mat-spinner></mat-spinner>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="failedConect">
+        <h6 class="text-center">{{failedConect}}</h6>
+      </div>
+
+  
+   </div>
+  </div>

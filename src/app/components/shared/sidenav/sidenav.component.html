@@ -1,0 +1,60 @@
+<div *ngIf="user">
+  <mat-nav-list>
+
+    <mat-nav-list>
+      <mat-card-header class="side_nav_header">
+        <mat-card-title>{{user.firstName | titlecase }} {{user.lastName | titlecase}}</mat-card-title>
+        <mat-card-subtitle>{{this.user.role.name}}</mat-card-subtitle>
+        <div mat-card-avatar class="side_nav_avatar">
+          <img *ngIf="role==1" class="profile" src="../../../../assets/img/profile/juan.png" alt="..."/>
+          <img *ngIf="role==2" class="profile" src="../../../../assets/img/profile/leo.png" alt="..."/>
+          <img *ngIf="firstName=='Victoria'" class="profile" src="../../../../assets/img/profile/victoria.png" alt="..."/>
+          <img *ngIf="firstName=='Sofia'" class="profile" src="../../../../assets/img/profile/sofia.png" alt="..."/>
+
+        </div>
+      </mat-card-header>
+    </mat-nav-list>
+
+    <mat-accordion>
+      <ng-container *ngFor="let f of functions">
+        <ng-container *ngIf="f.functions.length; else elseTemplate">
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <mat-icon matListIcon class="side_nav_icon">{{f?.icon}}</mat-icon>{{f?.title}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <ng-container *ngFor="let child of f.functions">
+              <ng-container *ngIf="child.functions.length; else elseTemplate">
+                <mat-expansion-panel>
+                  <mat-expansion-panel-header class="padding-sidenav">
+                    <mat-panel-title>
+                      <mat-icon matListIcon class="side_nav_icon">{{child?.icon}}</mat-icon>{{child?.title}}
+                    </mat-panel-title>
+                  </mat-expansion-panel-header>
+
+                  <a *ngFor="let c of child.functions" [routerLinkActive]="['active']" mat-list-item
+                    [routerLink]="[c.urlIntranet]">
+                    <mat-icon matListIcon class="side_nav_icon">{{c?.icon}}</mat-icon>{{c?.title}}
+                  </a>
+                </mat-expansion-panel>
+              </ng-container>
+              <ng-template #elseTemplate>
+                <a [routerLinkActive]="['active']" mat-list-item [routerLink]="[child.urlIntranet]">
+                  <mat-icon matListIcon class="side_nav_icon">{{child?.icon}}</mat-icon>{{child?.title}}
+                </a>
+              </ng-template>
+            </ng-container>
+          </mat-expansion-panel>
+        </ng-container>
+        <ng-template #elseTemplate>
+          <a [routerLinkActive]="['active']" mat-list-item [routerLink]="[f.urlIntranet]">
+            <mat-icon matListIcon class="side_nav_icon">{{f?.icon}}</mat-icon>{{f?.title}}
+          </a>
+        </ng-template>
+      </ng-container>
+    </mat-accordion>
+
+  </mat-nav-list>
+</div>

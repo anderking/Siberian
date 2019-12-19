@@ -1,0 +1,133 @@
+.mat-card{
+  display: inline-block;
+  width:100%;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12) !important;
+  transition: all .15s cubic-bezier(.33,.66,.66,1);
+  transition-property: all;
+  transition-duration: .15s;
+  transition-timing-function: cubic-bezier(.33,.66,.66,1);
+  transition-delay: initial;
+  margin: 1rem 0;
+  overflow: hidden !important;
+  background-color: #ffffff;
+}
+
+.mat-card:hover{
+  box-shadow: 0 7px 12px rgba(0,0,0,.45) !important;
+  transform: translate3d(0,-3px,0);
+}
+
+.ec-stars-wrapper {
+/* Espacio entre los inline-block (los hijos, los `a`) 
+http://ksesocss.blogspot.com/2012/03/display-inline-block-y-sus-empeno-en.html */
+font-size: 0;
+/* Podríamos quitarlo, 
+pero de esta manera (siempre que no le demos padding), 
+sólo aplicará la regla .ec-stars-wrapper:hover a cuando
+también se esté haciendo hover a alguna estrella */
+display: inline-block;
+}
+.ec-stars-wrapper a {
+  text-decoration: none;
+  display: inline-block;
+  /* Volver a dar tamaño al texto */
+  font-size: 1.5rem;
+
+  color: rgb(39, 130, 228);
+}
+
+.titulo {
+    justify-content: center;
+    text-align: center;
+}
+
+.stepper_ficha .mat-card{
+  padding: 0 !important;
+}
+.stepper_ficha .mat-card .mat-card-content {
+  border: solid 1px #d2d2d2;
+}
+.stepper_ficha .mat-card .mat-card-header{
+  background-color: #242451;
+  color: white;
+}
+.stepper_ficha .mat-card .mat-card-actions{
+  margin: 0 !important;
+  background: #f2f2f2;
+  padding: .5rem 0!important;
+}
+.stepper_ficha .mat-card .mat-card-actions button{
+  color: white;
+  background-color: #242451;
+  transition: all .15s cubic-bezier(.33,.66,.66,1);
+  transition-property: all;
+  transition-duration: .15s;
+  transition-timing-function: cubic-bezier(.33,.66,.66,1);
+  transition-delay: initial;
+}
+.stepper_ficha .mat-card .mat-card-actions button:hover{
+  box-shadow: 0 7px 12px rgba(0,0,0,.45) !important;
+  transform: translate3d(0,-3px,0);
+}
+
+.stepper_ficha .mat-card-content{
+  padding: 1rem 0;
+  margin:0;
+}
+.stepper_ficha .titulo {
+  justify-content: center;
+  text-align: center;
+}
+.stepper_ficha .mat-card-header .mat-card-title{
+  margin:0;
+}
+
+.card-img-top{
+  width: 250px;
+  height: 200px;
+  justify-content: center !important;
+}
+
+.card-img{
+  height: 100px !important;
+  width: 100px !important;
+}
+
+.lender_available.closed{
+  display:none;
+}
+.lender_available.open{
+  display:block;
+}
+
+
+
+a{
+  cursor:pointer;
+}
+
+.addLocation,.addPhone{
+  color: #283593 !important;
+}
+
+.addLocation:hover,.addPhone:hover{
+  color: blue !important;
+}
+
+.mat-card-header .mat-card-title{
+  margin:0 !important;
+}
+.mat-card{
+  padding: 0 !important;
+}
+.titulo.lenderOption{
+  padding: 1rem !important;
+}
+
+input[type="file"] {
+    
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+}

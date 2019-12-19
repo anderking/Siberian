@@ -1,0 +1,123 @@
+<div class="main_request_detail">
+
+  <div class="container" *ngIf="serviceOrder">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h4 class="titulo text-center">
+          Orden de Servicio
+          <span *ngIf="serviceOrder.status=='diagnosticated'" class="badge badge-warning">Diagnosticada</span>
+          <span *ngIf="serviceOrder.status=='finalized'" class="badge badge-success">Finalizada</span>
+        </h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <mat-card>
+          <mat-card-header class="titulo border-top-danger">
+            <mat-card-title>
+              <a [routerLink]="['/auth/client/request/detail',serviceOrder.revision.id]" class="title">Código Solicitud
+                {{ serviceOrder.revision.id }} - Ver Solicitud </a>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <br>
+
+            <div class="row">
+              <div class="col-sm-8 offset-2">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h2 class="text-center">Detalle Presupuesto</h2>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <mat-list>
+                      <div *ngFor="let sd of serviceOrder.serviceOrderDetails">
+                        <mat-list-item>
+                          <h4 mat-line><b>Servicio: </b> {{ sd.ServiceDetail.name }} </h4>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <h4 mat-line><b>Precio: </b> {{ serviceOrder.amount }} &nbsp; Bs.S.
+                          </h4>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <h4 mat-line><b>Garantía: </b> {{ serviceOrder.warrantyTime }} &nbsp;
+                            días. </h4>
+                        </mat-list-item>
+                        <mat-list-item>
+                          <h4 mat-line><b>Duración: </b> {{ sd.duration }} &nbsp;
+                            días. </h4>
+                        </mat-list-item>
+
+                        <div class="row">
+                          <div *ngIf="sd.ServiceDetail.resources.length" class="col-sm-6">
+                            <div class="ml-3">
+                              <h6><b>Recursos usados para el servicio</b></h6>
+                              <mat-list-item *ngFor="let resource of sd.ServiceDetail.resources">
+                                <h6 mat-subheader><b>{{ resource.quantity }} - {{ resource.name }} </b></h6>
+                              </mat-list-item>
+                            </div>
+                          </div>
+                          <div *ngIf="sd.ServiceDetail.activities.length" class="col-sm-6">
+                            <div class="ml-3">
+                              <h6><b>Actividades del servicio</b></h6>
+                              <mat-list-item *ngFor="let activity of sd.ServiceDetail.activities">
+                                <h6 mat-subheader><b>{{ activity.quantity }} - {{ activity.name }} </b></h6>
+                              </mat-list-item>
+                            </div>
+                          </div>
+                        </div>
+                        <!--
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <div class="ml-3">
+                                <h6><b>Politicas del servicio</b></h6>
+                                <mat-list-item *ngFor="let politic of sd.policies">
+                                  <h6 mat-subheader><b>{{ politic.name }} </b></h6>
+                                </mat-list-item>
+                              </div>
+                            </div>
+                            <div class="col-sm-6">
+                              <div class="ml-3">
+                                <h6><b>Habilidades para el Servicio </b></h6>
+                                <mat-list-item *ngFor="let skill of sd.ServiceDetail.skills">
+                                  <h6 mat-subheader><b>{{ skill.name }} - {{ skill.description }} </b></h6>
+                                </mat-list-item>
+                              </div>
+                            </div>
+                          </div>
+-->
+                      </div>
+                    </mat-list>
+                  </div>
+                </div>
+
+
+                <div class="text-center">
+                  <button mat-raised-button color="warn" (click)="reject()" class="mr-3">Rechazar</button>
+                  <button mat-raised-button color="primary" class="mr-3"  (click)="openDialog()">Aceptar</button>
+                </div>
+
+              </div>
+            </div>
+            <br>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>

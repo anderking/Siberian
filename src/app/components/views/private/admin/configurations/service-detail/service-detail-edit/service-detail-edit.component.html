@@ -1,0 +1,95 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="row">
+				<div class="col-sm-12">
+					<h2 class="text-center">Editar Detalle de Servicio</h2>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12">
+					<button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+				</div>
+			</div>
+			<hr>
+			
+			<div *ngIf="serviceDetail">
+				<div class="row">
+					<div class="col-sm-12">
+						<mat-card>
+							<mat-card-header class="titulo border-top-danger">
+								<mat-card-title>
+									{{ serviceDetail.name }}
+								</mat-card-title>
+							</mat-card-header>
+							<mat-card-content>
+								<div class="row">
+									<div class="col-sm-8 offset-2">
+										<br>
+
+										<form #updateForm="ngForm" (ngSubmit)="update(updateForm)">
+
+											<div class="row">
+												<div class="col-sm-12">
+
+													<mat-form-field>
+														<mat-select name="ComponentId" [(ngModel)]="serviceDetail.component.id" placeholder="Seleccione un Componente" required>
+															<mat-option *ngFor="let component of components" [value]="component.id">{{ component.name }}</mat-option>
+														</mat-select>
+													</mat-form-field>
+
+													<mat-form-field>
+														<mat-select name="type" [(ngModel)]="serviceDetail.serviceType" placeholder="Seleccione un Tipo" required>
+															<mat-option *ngFor="let type of types" [value]="type.id">{{ type.name }}</mat-option>
+														</mat-select>
+													</mat-form-field>
+
+													<mat-form-field>
+														<input matInput id="inputName" name="name" placeholder="Nombre" [(ngModel)]="serviceDetail.name" required>
+													</mat-form-field>
+
+													<mat-form-field>
+														<textarea matInput name="note" placeholder="Nota" [(ngModel)]="serviceDetail.note" required></textarea>
+													</mat-form-field> 
+
+													<mat-form-field>
+														<input matInput  name="estimatedPrice" placeholder="Precio Estimado" [(ngModel)]="serviceDetail.estimatedPrice" required>
+													</mat-form-field>
+
+													<mat-form-field>
+														<input matInput  name="estimatedWarrantyTime" placeholder="Tiempo Estimado de Garantía" [(ngModel)]="serviceDetail.estimatedWarrantyTime" required>
+													</mat-form-field>
+
+													<div class="row">
+														<div class="col-sm-12">
+															<button mat-raised-button color="primary" type="submit">Guardar</button>
+														</div>
+													</div>
+
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</mat-card-content>
+						</mat-card>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div *ngIf="!serviceDetail && !failedConect">
+				<div class="row">
+					<div class="col-sm-12 spinner">
+						<mat-spinner></mat-spinner>
+					</div>
+				</div>
+			</div>
+
+			<div *ngIf="failedConect">
+				<h6 class="text-center">{{failedConect}}</h6>
+			</div>
+		</div>
+	</div>
+</div>

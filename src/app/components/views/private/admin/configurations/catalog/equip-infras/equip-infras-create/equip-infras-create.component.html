@@ -1,0 +1,80 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 class="text-center">Nuevo Equipo - Infraestructura</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+          <button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+      
+    </div>  
+  </div>
+
+  <hr>
+
+
+  <div *ngIf="subcategories">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <mat-card>
+          <mat-card-header class="titulo border-top-danger">
+            <mat-card-title>
+              Equipo - Infraestructura
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="row">
+              <div class="col-sm-8 offset-2">
+                <form #registerForm="ngForm" (ngSubmit)="register(registerForm)" enctype="multipart/form-data">
+                  <br>
+                  <mat-form-field>
+                    <mat-select name="SubcategoryId" [(ngModel)]="SubcategoryId" placeholder="Seleccione una Subcategoría" required>
+                      <mat-option *ngFor="let subcategory of subcategories" [value]="subcategory.id">{{ subcategory.name }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-select name="type" [(ngModel)]="typeSelected" placeholder="Seleccione un Tipo" required>
+                      <mat-option *ngFor="let type of types" [value]="type.id">{{ type.name }}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <input matInput id="inputName" name="name" placeholder="Nombre" [(ngModel)]="name" required>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <textarea matInput name="description" placeholder="Descripción" [(ngModel)]="description" required></textarea>
+                  </mat-form-field>
+
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <input name="image_url" [(ngModel)]="image_url" type="file"/>
+                    </div>
+                  </div>
+
+                  <br>
+
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.form.valid">Registrar</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+
+  </div>
+    <div *ngIf="total<=0">
+      <h3 class="text-center">{{ message }} <a [routerLink]="['/auth/admin/configurations/catalog/sub-category/create']">¿Nueva Subcategoría?</a></h3>
+    </div>
+</div>

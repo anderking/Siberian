@@ -1,0 +1,38 @@
+<div class="container">
+  <h2 *ngIf="activity" class="text-center">Actividad</h2>
+  <button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+  <hr>
+  <div *ngIf="activity">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <table mat-table [dataSource]="dataSourceA" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let row"> {{ row.description }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="estimatedTime">
+            <th mat-header-cell *matHeaderCellDef> Tiempo Estimado </th>
+            <td mat-cell *matCellDef="let row">{{ row.estimatedTime }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="difficultyDegree">
+            <th mat-header-cell *matHeaderCellDef> Grado de Dificultad </th>
+            <td mat-cell *matCellDef="let row"> {{ row.difficultyDegree }} </td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsA"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsA;"></tr>
+        </table>
+      </div>
+    </div>
+  
+</div>

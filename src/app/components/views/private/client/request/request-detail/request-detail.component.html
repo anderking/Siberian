@@ -1,0 +1,276 @@
+<div class="main_request_detail">
+
+  <div class="container" *ngIf="revision">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h4 class="titulo text-center">
+          Revision
+          <span *ngIf="revision.status == 'requested'" class="badge badge-dark">Solicitada</span>
+          <span *ngIf="revision.status == 'approved'" class="badge badge-primary">Aprobada</span>
+          <span *ngIf="revision.status == 'rejected'" class="badge badge-danger">Rechazada</span>
+          <span *ngIf="revision.status == 'diagnosticated'" class="badge badge-warning">Diagnosticada</span>
+          <span *ngIf="revision.status == 'irreparable'" class="badge badge-danger">Irreparable</span>
+          <span *ngIf="revision.status == 'finalized'" class="badge badge-success">Finalizada</span>
+          <span *ngIf="revision.status == 'cancelled'" class="badge badge-danger">Cancelada</span>
+        </h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <button mat-raised-button matTooltip="Volver" matTooltipPosition="above" color="primary" (click)="goBack()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+      <div class="col-sm-12">
+        <mat-card>
+          <mat-card-header class="titulo border-top-danger">
+            <mat-card-title>
+              {{ revision.varietyDetail.Equipinfra.name }}
+            </mat-card-title>
+          </mat-card-header>
+
+          <div class="row">
+            <div class="col-sm-7">
+              <mat-list>
+                <h3 mat-subheader>Datos de la Revisión</h3>
+                <mat-list-item>
+                  <h4 mat-line>
+                    <b>Cliente: </b>{{ revision.user.firstName | titlecase }} {{ revision.user.lastName | titlecase }}
+                  </h4>
+                </mat-list-item>
+                <mat-list-item>
+                  <h4 mat-line>
+                    <b>Dirección: </b>{{ revision.location.address }}
+                  </h4>
+                </mat-list-item>
+                <mat-list-item>
+                  <h4 mat-line>
+                    <b>Fecha de la Solicitud: </b>{{ revision.createdAt |  date: 'dd/MM/yyyy' }}
+                  </h4>
+                </mat-list-item>
+                <mat-list-item>
+                  <h4 mat-line>
+                    <b>Fecha de la Revisión: </b>{{ revision.calendar.date |  date: 'dd/MM/yyyy' }}
+                  </h4>
+                </mat-list-item>
+                <mat-list-item>
+                  <h4 mat-line>
+                    <b>Descripción del Problema: </b>{{ revision.description }}
+                  </h4>
+                </mat-list-item>
+                <mat-list-item>
+                  <h4 mat-line>
+                    <b>Prestador Seleccionado: </b>{{ revision.calendar.lender.firstName | titlecase }}
+                    {{ revision.calendar.lender.lastName | titlecase }}
+                  </h4>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <h4 mat-line>
+                    <b>Precio: </b>{{ revision.price }} Bs.S
+                  </h4>
+                </mat-list-item>
+
+                <mat-list-item *ngIf="revision.status=='finalized'">
+                  <h4 mat-line>
+                      <button button mat-raised-button color="primary" [routerLink]="['/auth/client/service/detail/', revision.id]">
+                        Ir a Presupuesto
+                      </button>
+                  </h4>
+                </mat-list-item>
+
+              </mat-list>
+            </div>
+
+            <div class="col-sm-5">
+              <mat-list>
+                <h3 mat-subheader>Datos del Equipo</h3>
+                <mat-list-item>
+                  <h4 mat-line>
+                    <b>Equipo: </b>{{ revision.varietyDetail.Equipinfra.name }}
+                  </h4>
+                </mat-list-item>
+                <mat-list-item>
+                  <h4 mat-line>
+                    <b>Marca: </b>{{ revision.varietyDetail.variety.name }}
+                  </h4>
+                </mat-list-item>
+                <mat-list-item>
+                  <h4 mat-line>
+                    <b>Modelo: </b>{{ revision.varietyDetail.name }}
+                  </h4>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <h4 mat-line><b>Imagen: </b></h4>
+                </mat-list-item>
+
+                <mat-card class="card_img imgRequest">
+                  <mat-card-content class="mat_card_content">
+                    <img [src]="revision?.imageRequestUrl || urldelafault" alt="" />
+                  </mat-card-content>
+                </mat-card>
+              </mat-list>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+      <div class="col-sm-12">
+        <mat-card>
+          <mat-card-header class="titulo border-top-danger">
+            <mat-card-title>
+              Seguimiento
+            </mat-card-title>
+          </mat-card-header>
+
+          <div class="row">
+            <div class="offset-sm-2 col-sm-8">
+              <mat-list>
+                <!--<h3 mat-subheader>Status</h3>-->
+
+                <mat-list-item>
+                  <h4 mat-line>
+                    <span class="badge badge-primary">
+                      Solicitada. En espera por Aprobar
+                    </span>
+                  </h4>
+                  <mat-icon class="success">check_circle</mat-icon>
+                  <mat-icon>cancel</mat-icon>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <h4 mat-line>
+                    <span
+                      [ngClass]="(revision.status=='cancelled') ? 'badge badge-danger' : (revision.status=='approved' || revision.status=='diagnosticated' || revision.status=='finalized') ? 'badge badge-gray' : 'badge badge-gray'">
+                      Cancelada. Por el Cliente
+                    </span>
+                  </h4>
+                  <mat-icon
+                    [ngClass]="{'gray': revision.status=='approved' || revision.status=='rejected' || revision.status=='diagnosticated' || revision.status=='irreparable' || revision.status=='finalized'}">
+                    check_circle</mat-icon>
+                  <mat-icon
+                    [ngClass]="{'danger': revision.status=='cancelled', 'gray': revision.status=='approved' || revision.status=='rejected' || revision.status=='diagnosticated' || revision.status=='irreparable' || revision.status=='finalized'}">
+                    cancel</mat-icon>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <h4 mat-line>
+                    <span
+                      [ngClass]="(revision.status=='approved' || revision.status=='diagnosticated' || revision.status=='irreparable' || revision.status=='finalized') ? 'badge badge-primary' : (revision.status=='rejected') ? 'badge badge-gray' : 'badge badge-gray'">
+                      Aprobada. En espera por Diagnostico
+                    </span>
+                  </h4>
+                  <mat-icon
+                    [ngClass]="{'success': revision.status=='approved' || revision.status=='diagnosticated' || revision.status=='irreparable' || revision.status=='finalized', 'gray': revision.status=='rejected'}">
+                    check_circle</mat-icon>
+                  <mat-icon [ngClass]="{'gray': revision.status=='rejected'}">cancel</mat-icon>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <h4 mat-line>
+                    <span
+                      [ngClass]="(revision.status=='rejected') ? 'badge badge-danger' : (revision.status=='approved' || revision.status=='diagnosticated' || revision.status=='finalized') ? 'badge badge-gray' : 'badge badge-gray'">
+                      Rechazada. Su solicitud no fue Aprobada
+                    </span>
+                  </h4>
+                  <mat-icon
+                    [ngClass]="{'gray': revision.status=='approved' || revision.status=='diagnosticated' || revision.status=='irreparable' || revision.status=='approved' || revision.status=='finalized'}">
+                    check_circle</mat-icon>
+                  <mat-icon
+                    [ngClass]="{'danger': revision.status=='rejected', 'gray': revision.status=='approved' || revision.status=='irreparable' || revision.status=='diagnosticated' || revision.status=='approved' || revision.status=='finalized'}">
+                    cancel</mat-icon>
+                </mat-list-item>
+
+                <div class="ml-3">
+                  <div *ngFor="let bitacora of revision.bitacoras">
+                    <div *ngIf="bitacora.eventType=='closure'">
+                      <mat-list-item>
+                        <h4 mat-line>
+                        <span class="badge badge-gray">
+                          <b>Motivo: </b> {{ bitacora.motive.name }} - {{ bitacora.motive.description }} -
+                            {{ bitacora.description }}
+                        </span>
+                        </h4>
+                      </mat-list-item>
+                    </div>
+                  </div>
+                </div>
+
+                <mat-list-item>
+                  <h4 mat-line>
+                    <span
+                      [ngClass]="(revision.status=='diagnosticated' || revision.status=='irreparable' || revision.status=='finalized') ? 'badge badge-primary' : (revision.status=='irreparable') ? 'badge badge-gray' : 'badge badge-gray'">
+                      Diagnosticada. Evaluando Presupuesto
+                    </span>
+                  </h4>
+                  <mat-icon
+                    [ngClass]="{'success': revision.status=='diagnosticated' || revision.status=='irreparable' || revision.status=='finalized'}">
+                    check_circle</mat-icon>
+                  <mat-icon>cancel</mat-icon>
+                </mat-list-item>
+
+                <mat-list-item>
+                  <h4 mat-line>
+                    <span
+                      [ngClass]="(revision.status=='irreparable') ? 'badge badge-danger' : (revision.status=='approved') ? 'badge badge-gray' : 'badge badge-gray'">
+                      Irreparable. No es posible aplicar un Servicio
+                    </span>
+                  </h4>
+                  <mat-icon [ngClass]="{'gray':  revision.status=='finalized'}">check_circle</mat-icon>
+                  <mat-icon
+                    [ngClass]="{'danger': revision.status=='irreparable', 'gray': revision.status=='finalized'}">cancel
+                  </mat-icon>
+                </mat-list-item>
+
+                <div class="ml-3">
+                  <div *ngFor="let bitacora of revision.bitacoras">
+                    <div *ngIf="bitacora.eventType=='closure'">
+                      <mat-list-item>
+                        <h4 mat-line>
+                        <span class="badge badge-gray">
+                          <b>Motivo: </b> {{ bitacora.motive.name }} - {{ bitacora.motive.description }} -
+                            {{ bitacora.description }}
+                        </span>
+                      </h4>
+                      </mat-list-item>
+                    </div>
+                  </div>
+                </div>
+
+                <mat-list-item>
+                  <h4 mat-line>
+                    <span [ngClass]="(revision.status=='finalized') ? 'badge badge-primary' : 'badge badge-gray'">
+                      Finalizada. Servicio Presupuestado
+                    </span>
+                  </h4>
+                  <mat-icon [ngClass]="{'success': revision.status=='finalized'}">check_circle</mat-icon>
+                  <mat-icon>cancel</mat-icon>
+                </mat-list-item>
+
+              </mat-list>
+            </div>
+          </div>
+          <div class="row m-3">
+                <div class="col-md-8"></div>
+                <div class="col-md-4"> 
+                  <mat-icon class="success">check_circle</mat-icon><span>Finalizado con éxito</span>
+                <mat-icon class="danger">cancel</mat-icon><span> Sin Finalizar</span>
+              </div>
+              </div>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

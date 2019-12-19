@@ -1,0 +1,64 @@
+<div class="container main_company_show" >
+    <div class="row">
+        <div class="col-sm-12">
+            <h2 class="text-center">Empresa</h2>
+        </div>
+    </div>
+
+    <!-- <div class="row" *ngIf="!company">
+        <div class="col-sm-12 company">
+            <br>
+            <br>
+            <h2>¡Bienvenido a Siberian!</h2>
+            <br>
+            <br>
+            <h4>El primer paso es registrar tu empresa. Por favor, haz click en comenzar</h4>
+            <br>
+            <br>
+            <div class="comenzar">
+                <button mat-raised-button  matTooltip="Comenzar" matTooltipPosition="above"color="primary" class="mr-3" [routerLink]="['/auth/admin/configurations/company/create']">Comenzar</button>
+            </div>
+        </div>
+    </div> -->
+
+    <div *ngIf="company">
+        <div class="row" >
+            <div class="col-sm-12">
+                <button mat-raised-button  matTooltip="Editar" matTooltipPosition="above"color="primary" class="mr-3" [routerLink]="['edit',company.id]"><mat-icon>edit</mat-icon></button>
+                <button mat-raised-button  matTooltip="Comenzar" matTooltipPosition="above"color="primary" class="mr-3" [routerLink]="['/auth/admin/configurations/company/create']">Crear</button>
+            </div>
+        </div>
+            
+        <hr>
+            
+        <mat-card >
+            <mat-card-header class="titulo border-top-danger"><mat-card-title>{{ company.name }}</mat-card-title></mat-card-header>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <mat-list>
+                            <mat-list-item> <b>Rif: </b> {{ company.rif }}</mat-list-item>
+                            <mat-list-item> <b>Nombre:</b> {{ company.name }}</mat-list-item>
+                            <mat-list-item> <b>Misión: </b> {{ company.vision }}</mat-list-item>
+                            <mat-list-item> <b>Visión: </b> {{ company.vision }}</mat-list-item>
+                            <mat-list-item> <b>¿Quiénes somos?:</b>{{ company.aboutUs }}</mat-list-item>
+                            <mat-list-item> <b>Primer Teléfono: </b> {{ company.phoneOne }}</mat-list-item>
+                            <mat-list-item> <b>Segundo Teléfono: </b> {{ company.phoneTwo }}</mat-list-item>
+                            <mat-list-item> <b>Dirección: </b> {{ company.address }}</mat-list-item>
+                            <mat-list-item> <b>Precio revisión: </b> {{ company.revisionPrice }}</mat-list-item>
+                            <mat-list-item> <b>Facebook: </b>www.facebook.com/{{ company.facebook }}</mat-list-item>
+                            <mat-list-item> <b>Instagram: </b>{{ company.instagram}}</mat-list-item>
+                            <mat-list-item> <b>Twitter: </b> {{ company.twitter }}</mat-list-item>
+                            <mat-list-item> <b>Imagen: </b></mat-list-item>
+                            <mat-card >
+                              <mat-card-content>
+                                <img [src]="company?.imageUrl || 'https://res.cloudinary.com/teamwatson/image/upload/v1574783497/EN-BLANCO_ovel9g.png'" alt="" width="60%" height="auto">
+                              </mat-card-content>
+                            </mat-card>
+                        </mat-list>
+                    </div>
+                </div>
+            </mat-card>
+    </div>
+
+    
+</div>

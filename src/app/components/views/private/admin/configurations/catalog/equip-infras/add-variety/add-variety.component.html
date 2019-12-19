@@ -1,0 +1,87 @@
+<div class="container" *ngIf="equipinfras">
+
+	<div class="row">
+		<div class="col-sm-12">
+			<h2 class="text-center">Asignar Variedad</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+		</div>
+	</div>
+	<hr>
+
+	<div *ngIf="varieties">
+
+		<div class="row">
+			<div class="col-sm-12">
+				<mat-card>
+					<mat-card-header class="titulo border-top-danger">
+						<mat-card-title>
+							{{equipinfras.name}}
+						</mat-card-title>
+					</mat-card-header>
+					<mat-card-content>
+						<div class="row">
+							<div class="col-sm-8 offset-2">
+								<br>
+								<form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+									<mat-form-field>
+										<mat-select name="VarietyId" [(ngModel)]="VarietyId" placeholder="Seleccione una o mas variedades" required>
+											<mat-option *ngFor="let variety of varieties" [value]="variety.id">{{variety.name}}</mat-option>
+										</mat-select>
+									</mat-form-field>
+									<div class="row">
+										<div class="col-sm-12">
+											<a [routerLink]="['/auth/admin/configurations/catalog/variety/create']">¿Nueva Variedad?</a>
+										</div>
+									</div>
+
+									<br>
+
+									<div class="row">
+										<div class="col-sm-12">
+											<button mat-raised-button color="primary" class="mr-3" type="submit" [disabled]="!registerForm.form.valid">Asignar</button>
+										</div>
+									</div>
+								</form>
+								<hr>
+
+								<div *ngIf="equipinfras.varieties.length>0">
+									<div class="row">
+										<div class="col-sm-12">
+											<mat-list>
+												<mat-list-item *ngFor="let variety of equipinfras.varieties">
+													<h4 mat-line>{{variety.name}}</h4><span class="badge badge-primary">{{variety.varietyDetails.length}}</span>
+													<button mat-icon-button color="primary" matTooltip="Asignar Modelo" matTooltipPosition="above" [routerLink]="[variety.id,'addVarietyDetails',{EquipinfraId:EquipinfraId}]"><mat-icon>add</mat-icon></button>
+													<button mat-icon-button color="warn" matTooltip="Borrar Variedad" matTooltipPosition="above" (click)="onDelete(variety.id)"><mat-icon>delete</mat-icon></button>
+												</mat-list-item>
+											</mat-list>
+										</div>
+									</div>
+								</div>
+
+								<div *ngIf="equipinfras.varieties.length<=0">
+									<div class="row">
+										<div class="col-sm-12">
+											<mat-list>
+												<mat-list-item>
+													<h4 mat-line>No tiene variedades</h4>
+												</mat-list-item>
+											</mat-list>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</mat-card-content>
+				</mat-card>
+			</div>
+		</div>
+
+	</div>
+	<div *ngIf="total<=0">
+		<h3 class="text-center">{{ message }} <a [routerLink]="['/auth/admin/configurations/catalog/variety/create']">¿Nueva Variedad?</a></h3>
+	</div>
+</div>

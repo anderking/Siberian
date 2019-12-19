@@ -1,0 +1,19 @@
+<mat-sidenav-container class="mat_sidenav_container">
+    <mat-sidenav #sidenav opened="true" mode="side" class="mat_sidenav" [class.open]="isToggle" [class.closed]="!isToggle">
+        <mat-toolbar color="primary" class="sidenav_toolbar">
+            <button mat-icon-button (click)="shoot()" aria-label="Example icon-button with a heart icon">
+                <mat-icon>menu</mat-icon>
+              </button>
+        </mat-toolbar>
+        <sib-sidenav></sib-sidenav>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="mat_sidenav_content" [ngStyle]="{'margin-left.%': contentMargin}">
+            <sib-toolbar [isToggle]="isToggle"></sib-toolbar>
+            <main class="main">
+                <router-outlet></router-outlet>
+            </main>
+            <mat-divider></mat-divider>
+            <sib-footer></sib-footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>

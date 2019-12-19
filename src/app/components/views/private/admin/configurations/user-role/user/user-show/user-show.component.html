@@ -1,0 +1,182 @@
+<div class="container">
+	<h2 *ngIf="user" class="text-center">Usuario</h2>
+	<button mat-raised-button color="primary" [routerLink]="['/auth/admin/configurations/user-role/user']" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+	<hr>
+	<div *ngIf="user">
+  
+	  <div class="row">
+		<div class="col-sm-12">
+		  <table mat-table [dataSource]="dataSourceU" class="mat-elevation-z8">
+  
+			<ng-container matColumnDef="email">
+				<th mat-header-cell *matHeaderCellDef> Email </th>
+				<td mat-cell *matCellDef="let row"> {{row.email}} </td>
+			</ng-container>
+
+			<ng-container matColumnDef="firstName">
+				<th mat-header-cell *matHeaderCellDef> Nombre </th>
+				<td mat-cell *matCellDef="let row"> {{row.firstName}} </td>
+			</ng-container>
+
+			<ng-container matColumnDef="lastName">
+				<th mat-header-cell *matHeaderCellDef> Apellido </th>
+				<td mat-cell *matCellDef="let row"> {{row.lastName}}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="dni">
+				<th mat-header-cell *matHeaderCellDef> Dni </th>
+				<td mat-cell *matCellDef="let row"> {{row.dniType | titlecase}}-{{row.dni}}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="gender">
+				<th mat-header-cell *matHeaderCellDef> Género </th>
+				<td mat-cell *matCellDef="let row"> {{row.gender}}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="role">
+				<th mat-header-cell *matHeaderCellDef> Rol </th>
+				<td mat-cell *matCellDef="let row"> {{row.role.name}}</td>
+			</ng-container>
+
+			<ng-container matColumnDef="status">
+				<th mat-header-cell *matHeaderCellDef> Estatus </th>
+				<td mat-cell *matCellDef="let row">
+					<span *ngIf="row.status=='active'" class="badge badge-success">{{row.status | titlecase}}</span>
+					<span *ngIf="row.status=='deleted'" class="badge badge-danger">{{row.status | titlecase}}</span>
+				</td>
+			</ng-container>
+  
+			<tr mat-header-row *matHeaderRowDef="displayedColumnsU"></tr>
+			<tr mat-row *matRowDef="let row; columns: displayedColumnsU;"></tr>
+		  </table>
+		</div>
+	  </div>
+  
+	  <br>
+  
+	  <div class="row">
+		<div class="col-sm-12">
+		  <h2 class="text-center">Direcciones</h2>
+		</div>
+	  </div>
+  
+	  <hr>
+  
+	  <div *ngIf="locations">
+  
+		<div class="row">
+		  <div class="col-sm-12">
+			<mat-form-field>
+			  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+			</mat-form-field>
+		  </div>
+		</div>
+  
+		<div class="row">
+		  <div class="col-sm-12">
+			<div class="mat-elevation-z8">
+  
+			  <div *ngIf="locations.length<=0 && !failedConect">
+				<div class="row">
+				  <div class="col-sm-12">
+					<h3 class="text-center mt-3 mb-3">Este Usuario no tiene Direcciones asociadas</h3>
+				  </div>
+				</div>
+			  </div>
+  
+  
+			  <table *ngIf="locations.length>0" mat-table [dataSource]="dataSource">
+  
+				<ng-container matColumnDef="address">
+				  <th mat-header-cell *matHeaderCellDef> Dirección </th>
+				  <td mat-cell *matCellDef="let row"> {{ row.address }} </td>
+				</ng-container>
+	  
+				<ng-container matColumnDef="state">
+				  <th mat-header-cell *matHeaderCellDef> Estado </th>
+				  <td mat-cell *matCellDef="let row"> {{ row.state }} </td>
+				</ng-container>
+	  
+				<ng-container matColumnDef="city">
+				  <th mat-header-cell *matHeaderCellDef> Ciudad </th>
+				  <td mat-cell *matCellDef="let row"> {{ row.city}} </td>
+				</ng-container>
+  
+				<ng-container matColumnDef="postalCode">
+					<th mat-header-cell *matHeaderCellDef> Código Postal </th>
+					<td mat-cell *matCellDef="let row"> {{ row.postalCode}} </td>
+				  </ng-container>
+  
+				<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumns;">
+				</tr>
+			  </table>
+  
+			 
+			</div>
+		  </div>
+		</div>
+	  </div>
+
+
+	  <br>
+  
+	  <div class="row">
+		<div class="col-sm-12">
+		  <h2 class="text-center">Teléfonos</h2>
+		</div>
+	  </div>
+  
+	  <hr>
+  
+	  <div *ngIf="phones">
+  
+		<div class="row">
+		  <div class="col-sm-12">
+			<mat-form-field>
+			  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+			</mat-form-field>
+		  </div>
+		</div>
+  
+		<div class="row">
+		  <div class="col-sm-12">
+			<div class="mat-elevation-z8">
+  
+			  <div *ngIf="phones.length<=0 && !failedConect">
+				<div class="row">
+				  <div class="col-sm-12">
+					<h3 class="text-center mt-3 mb-3">Este Usuario no tiene Teléfonos asociados</h3>
+				  </div>
+				</div>
+			  </div>
+  
+  
+			  <table *ngIf="phones.length>0" mat-table [dataSource]="dataSourceP">
+  
+	  
+				<ng-container matColumnDef="number">
+				  <th mat-header-cell *matHeaderCellDef> Número</th>
+				  <td mat-cell *matCellDef="let row"> {{ row.number }} </td>
+				</ng-container>
+				
+				<ng-container matColumnDef="phoneType">
+					<th mat-header-cell *matHeaderCellDef> Tipo de Teléfono </th>
+					<td mat-cell *matCellDef="let row"> {{ row.phoneType }} </td>
+				  </ng-container>
+  
+				<tr mat-header-row *matHeaderRowDef="displayedColumnsP"></tr>
+				<tr mat-row *matRowDef="let row; columns: displayedColumnsP;">
+				</tr>
+			  </table> 
+			</div>
+		  </div>
+		</div>
+	  </div>
+	  
+
+	</div>
+  
+  
+  
+  </div>

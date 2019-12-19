@@ -1,0 +1,64 @@
+<div class="main_dashboard">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-sm-12">
+						<h2 class="text-center">Seleccione un Equipo</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="offset-sm-3 col-sm-6">
+						 <mat-form-field class="example-full-width">
+						 	<input matInput id="filterEquipsinfras" name="filterEquipsinfras" [(ngModel)]="filterEquipsinfras" placeholder="Buscar equipo...">
+						 </mat-form-field>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-12">
+						<button mat-raised-button matTooltip="Volver" matTooltipPosition="above" color="primary" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+					</div>
+				</div>
+				<hr>
+				<div *ngIf="equipsinfras && category">
+					<div class="row">
+						<div class="col-md-4" *ngFor="let equipinfras of equipsinfras | searchEquipsinfras:filterEquipsinfras">
+							<a [routerLink]="['/auth/client/request/stepper']" (click)="SetIdEquipinfras(equipinfras.id)">
+								<mat-card class="servicio">
+									<mat-card-header class="titulo mat-card-header-primary">
+										<mat-card-title>{{ subcategory.name }}</mat-card-title>
+									</mat-card-header>
+									<mat-card-content class="mat_card_content">
+										<div class="row">
+											<div class="col-sm-5">
+												<img [src]="equipinfras?.imageUrl || 'https://res.cloudinary.com/teamwatson/image/upload/v1574783497/EN-BLANCO_ovel9g.png'" alt="" class="card-img-top">
+											</div>
+											<div class="col-sm-7">
+												<b>Equipo: </b> {{ equipinfras.name }}
+												<br>
+												<b>Descripción: </b> {{ equipinfras.description }}
+												<br>
+												<b>Marcas: </b><span class="badge badge-primary">{{ equipinfras.varieties.length }}</span>
+											</div>
+										</div>
+									</mat-card-content>
+								</mat-card>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div *ngIf="total<=0">
+					<div class="row">
+						<div class="col-md-12">
+							<h3 class="text-center">No hay equipos-infraestructuras registradas para esta subcategoría</h3>
+						</div>
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</div>

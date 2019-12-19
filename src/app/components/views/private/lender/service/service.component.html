@@ -1,0 +1,115 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<h2 class="text-center">Historial de Servicios</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">
+			<button mat-raised-button matTooltip="Volver" matTooltipPosition="above" color="primary" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+			
+		</div>
+	</div>
+	<hr>
+	
+	<div *ngIf="serviceOrders">
+			<div class="row">
+				<div class="col-sm-12">
+					<mat-form-field>
+						<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+					</mat-form-field>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="mat-elevation-z8">
+
+							<div *ngIf="total<=0 && !failedConect">
+									<div class="row">
+										<div class="col-sm-12">
+											<h3 class="text-center mt-3 mb-3">No hay Solicitudes</h3>
+											<h2 class="text-center"><a [routerLink]="['/auth/client/catalog']">Solicitar Servicio!</a></h2>
+										</div>
+									</div>
+								</div>
+
+
+						<table *ngIf="total>0" mat-table [dataSource]="dataSource" matSort>
+
+							<ng-container matColumnDef="id">
+								<th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+								<td mat-cell *matCellDef="let row">
+									<button mat-icon-button color="accent" matTooltip="Detalle" matTooltipPosition="above" [routerLink]="['/auth/client/service/detail/1']">
+										<mat-icon>remove_red_eye</mat-icon>
+									</button>
+								</td>
+							</ng-container>
+
+							<ng-container matColumnDef="equipinfras">
+								<th mat-header-cell *matHeaderCellDef mat-sort-header> Equipo </th>
+								<td mat-cell *matCellDef="let row"> Lavadora </td>
+							</ng-container>
+
+							<ng-container matColumnDef="code">
+								<th mat-header-cell *matHeaderCellDef mat-sort-header> Código </th>
+								<td mat-cell *matCellDef="let row"> {{ row.code }} </td>
+							</ng-container>
+
+							<ng-container matColumnDef="amount">
+								<th mat-header-cell *matHeaderCellDef mat-sort-header> Monto </th>
+								<td mat-cell *matCellDef="let row"> {{ row.amount }}</td>
+							</ng-container>
+
+							<ng-container matColumnDef="serviceDetails">
+								<th mat-header-cell *matHeaderCellDef mat-sort-header> Servicios </th>
+								<td mat-cell *matCellDef="let row"> {{ row.serviceOrderDetails.length }}</td>
+							</ng-container>
+
+							<ng-container matColumnDef="lender">
+								<th mat-header-cell *matHeaderCellDef> Cliente </th>
+								<td mat-cell *matCellDef="let row"> Gilberto Perez </td>
+							</ng-container>
+
+							<ng-container matColumnDef="status">
+								<th mat-header-cell *matHeaderCellDef mat-sort-header> Estatus </th>
+								<td mat-cell *matCellDef="let row">
+									<span *ngIf="row.status=='budgeted'" class="badge badge-dark">Presupuestado</span>
+									<span *ngIf="row.status=='approved'" class="badge badge-primary">Aprobado</span>
+									<span *ngIf="row.status=='rejected'" class="badge badge-danger">Rechazado</span>
+									<span *ngIf="row.status=='finalized'" class="badge badge-success">Cerrado</span>
+									<span *ngIf="row.status=='warranty'" class="badge badge-warning">En Garantía</span>
+								</td>
+							</ng-container>
+
+							<ng-container matColumnDef="approved">
+									<th mat-header-cell *matHeaderCellDef></th>
+									<td mat-cell *matCellDef="let row">
+										<button *ngIf="row.status=='budgeted'" mat-icon-button color="primary" (click)="onApproved(row.id)" matTooltip="Aprobar" matTooltipPosition="above">
+											<mat-icon>check_circle</mat-icon>
+										</button>
+									</td>
+								</ng-container>
+
+								<ng-container matColumnDef="rejected">
+									<th mat-header-cell *matHeaderCellDef></th>
+									<td mat-cell *matCellDef="let row">
+										<button *ngIf="row.status=='budgeted'" mat-icon-button color="warn" (click)="onRejected(row.id)" matTooltip="Rechazar" matTooltipPosition="above">
+											<mat-icon>cancel</mat-icon>
+										</button>
+									</td>
+								</ng-container>
+
+							<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+							<tr mat-row *matRowDef="let row; columns: displayedColumns;">
+							</tr>
+						</table>
+
+						<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+					</div>
+				</div>
+			</div>		
+	</div>
+
+
+</div>

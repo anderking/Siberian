@@ -1,0 +1,37 @@
+<div>
+  <h1 mat-dialog-title>Fecha</h1>
+  <div mat-dialog-content>
+    <p>Escoge por rango</p>
+    <mat-form-field class="example-full-width">
+        <input matInput [matDatepicker]="picker1" placeholder="Desde"  (dateChange)="changeDateIn('change', $event)">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker1></mat-datepicker>
+    </mat-form-field>
+   <!-- <mat-form-field class="example-full-width">
+      <input name="dateFechaIn" [(ngModel)]="dateFechaIn" matInput [matDatepicker]="picker" placeholder="Desde"  [min] = "minDate" (dateChange)="changeDateIn('change', $event)" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker></mat-datepicker>
+    </mat-form-field>
+    
+
+    <mat-form-field>
+      <input name="dateFechaFin" [(ngModel)]="dateFechaFin" matInput [matDatepicker]="picker" placeholder="Hasta"  [min] = "maxDate" (dateChange)="changeDateFin('change', $event)" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker></mat-datepicker>
+    </mat-form-field>-->
+    <mat-form-field class="example-full-width">
+      <input matInput [matDatepicker]="picker2" placeholder="Hasta"  (dateChange)="changeDateIn('change', $event)">
+      <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker2></mat-datepicker>
+    </mat-form-field>
+  </div>
+    
+  <div mat-dialog-actions>
+      <p class="text-center">
+        <button mat-raised-button color="warn" [mat-dialog-close]="false">Cancelar</button>
+        <button mat-raised-button color="accent" [mat-dialog-close]="true">Aplicar</button>
+      </p>
+    </div>
+</div>
+
+  

@@ -1,0 +1,120 @@
+
+<div class="container">
+  <h2 *ngIf="category" class="text-center">Categoría</h2>
+  <button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+  <hr>
+  <div *ngIf="category">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <table mat-table [dataSource]="dataSourceC" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let row"> {{ row.description }} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="subcategories">
+            <th mat-header-cell *matHeaderCellDef> Subcategoría </th>
+            <td mat-cell *matCellDef="let row"> {{ row.subcategories.length }} </td>
+          </ng-container>
+
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Estatus </th>
+            <td mat-cell *matCellDef="let row">
+              <span *ngIf="row.status=='active'" class="badge badge-success">{{row.status | titlecase}}</span>
+              <span *ngIf="row.status=='deleted'" class="badge badge-danger">{{row.status | titlecase}}</span>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsC"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsC;"></tr>
+        </table>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="text-center">Subcategoría</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <button mat-raised-button color="primary" class="mr-3" [routerLink]="['/auth/admin/configurations/catalog/category',category.id,'addSubcategory']" matTooltip="Asignar Categoría" matTooltipPosition="above"><mat-icon>add</mat-icon></button>
+      </div>
+    </div>
+    <hr>
+
+    <div *ngIf="subcategories">
+
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="mat-elevation-z8">
+
+            <div *ngIf="subcategories.length<=0 && !failedConect">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h3 class="text-center mt-3 mb-3">Esta Categoría no tiene subcategorías asociadas</h3>
+                </div>
+              </div>
+            </div>
+
+
+            <table *ngIf="subcategories.length>0" mat-table [dataSource]="dataSource">
+
+
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef> Descripción </th>
+                <td mat-cell *matCellDef="let row"> {{row.description}}</td>
+              </ng-container>
+
+              
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Estatus </th>
+                <td mat-cell *matCellDef="let row">
+                  <span *ngIf="row.status=='active'" class="badge badge-success">{{row.status | titlecase}}</span>
+                  <span *ngIf="row.status=='deleted'" class="badge badge-danger">{{row.status | titlecase}}</span>
+                </td>
+              </ng-container>
+
+              
+
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+              </tr>
+            </table>
+
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>

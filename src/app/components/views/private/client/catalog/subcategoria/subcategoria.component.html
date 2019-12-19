@@ -1,0 +1,48 @@
+<div class="main_dashboard">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-sm-12">
+						<h2 class="text-center">Seleccione una Subcategoría</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<button mat-raised-button matTooltip="Volver" matTooltipPosition="above" color="primary" (click)="goBack()"><mat-icon>arrow_back</mat-icon></button>
+					</div>
+				</div>
+				<hr>
+				<div *ngIf="subcategories">
+					<div class="row">
+						<div class="col-md-3" *ngFor="let subcategory of subcategories">
+							<a [routerLink]="['/auth/client/catalog/category',category.id,'subcategory',subcategory.id]">
+								<mat-card class="servicio">
+									<mat-card-header class="titulo mat-card-header-primary">
+										<mat-card-title>{{ subcategory.name }}</mat-card-title>
+									</mat-card-header>
+									<mat-card-content class="mat_card_content">
+										<div class="row">
+											<div class="offset-2 col-sm-8">
+												<img [src]="'https://res.cloudinary.com/teamwatson/image/upload/v1574783497/EN-BLANCO_ovel9g.png'" alt="" class="card-img-top">
+												<br>
+											</div>
+										</div>
+									</mat-card-content>
+								</mat-card>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div *ngIf="total<=0">
+					<div class="row">
+						<div class="col-md-12">
+							<h3 class="text-center">No hay subcategorías registradas para esta categoría</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

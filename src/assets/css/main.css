@@ -1,0 +1,708 @@
+/* Dayana*/
+/* Adaptando colores
+Versión 4.0.0
+09/07/2019*/
+
+html,body,.mat_sidenav_content{
+  padding:0;
+  margin:0;
+  height: 100%; /*Esto hace que tenga scroll solo el contenido y no el sidenav*/
+}
+h2{
+  margin-bottom: 1rem;
+}
+body{
+  color: #121212;
+}
+
+/*Color de letra general y fondo en todo el body cuando no esta logeado*/
+.body,body{
+  background: #f2f2f2f2;
+}
+
+.mat_sidenav{
+  width: 20%;
+}
+
+a{
+  text-decoration: none !important;
+}
+
+.main{
+  min-height:100vh;
+  padding: 2rem;
+  padding-top: 6rem;
+}
+
+mat-divider {
+  display: none !important; ;
+}
+
+.mat-accordion .mat-expansion-panel{
+  border-radius: 0 !important;
+  background-color: #0b173b !important;
+  color: #ffffff !important;
+}
+.mat-expansion-panel-header-title{
+  font-size:16px !important;
+  color: #ffffff !important;
+}
+.mat-expansion-panel-spacing{
+  margin: 0 !important;
+}
+.mat-expansion-panel-header-description, .mat-expansion-indicator::after{
+  color: #ffffff !important; 
+}
+.mat-expansion-indicator::after:focus{
+
+}
+.mat-accordion .mat-expansion-panel-header{
+  padding: 0 24px 0 0 !important;
+}
+.mat-accordion .mat-expansion-panel-header:hover{
+  background-color: rgb(20,90,137) !important;
+  color: #ffffff !important;
+}
+.mat-expansion-panel-body{
+  padding: 0 !important;
+}
+.mat-expansion-panel-header-description, .mat-expansion-panel-header-title{
+  margin:0 !important;
+}
+/* Centrando login*/
+.main_login{
+  min-height: 97vh;
+}
+
+/*Fondo global de la pagina cuando esta logeado*/
+.indigo{
+  background-color: #f2f2f2f2 !important; 
+}
+
+/*Centro el rol del usuario que esta arriba del sidebar*/
+.user-roal{
+  margin: auto;
+}
+
+.mat_sidenav_container{
+  flex: 1;
+  height:100%;/*Esto hace que tenga scroll solo el contenido y no el sidenav*/
+  min-height:100%;
+  width:100%;
+  min-width:100%;
+}
+
+.mat_sidenav{
+  width:20%;
+  background-color: #0b173b !important;
+  color: #ffffff !important;
+  transition: width, ease-in-out 200ms;
+}
+
+.mat_sidenav_content{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  flex-grow: 1;
+  overflow: hidden;
+  transition: width, ease-in-out 200ms;
+}
+
+.mat_sidenav a,.mat_sidenav mat-card-subtitle{
+  color: #ffffff !important;
+}
+
+/*Era para agregar una lentitud de transision al abrir y cerrar el sidenav*/
+.mat_sidenav.open{
+  width: 20%;
+}
+.mat_sidenav.closed{
+  width: 5%;
+}
+
+.toolbar.open{
+    transition: width, ease-in-out 200ms;
+}
+.toolbar.closed{
+    padding-left: 6% !important;
+    transition: width, ease-in-out 200ms;
+}
+
+/*.content_open{
+  margin-left: 20%;
+  transition: width, ease-in-out 200ms;
+}
+.content_closed{
+  margin-left: 5%;
+  transition: width, ease-in-out 200ms;
+}*/
+
+.side_nav_icon{
+  margin-right: 25px;
+    margin-left: 5px;
+}
+.side_nav_header .mat-card-avatar {
+  /*background-image: url("../img/profile/avatar_3.png");*/
+  background-size: cover;
+  margin-right: 5px;
+  margin-left: 5px;
+  height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+.side_nav_header.mat-card-header{
+  margin: 0 15px;
+  display: flex;
+  flex-direction: row;
+}
+.side_nav_header .mat-card-header-text {
+    margin: 0 16px;
+}
+.side_nav_header.mat-card-header .mat-card-title {
+    margin-bottom: 12px;
+    display: block;
+}
+.side_nav_header.mat-card-header .mat-card-subtitle {
+    margin-top: -8px;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.fixed_toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%  !important;
+  background-color: #0b173b !important;
+  border-bottom: solid 1px #d2d2d2;
+}
+.toolbar_footer{
+ border-top: solid 1px #d2d2d2; 
+}
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container > * {
+  width: 100%;
+}
+
+.sidenav_toolbar{
+  color: #ffffff !important;
+  background-color: #0B173B !important;
+}
+
+/* Color botones*/
+
+
+/*Paleta para los badge*/
+span.badge{
+  color:#ffffff !important;
+}
+span.badge-primary{
+  background-color: #242451!important;
+}
+span.badge-success{
+  background-color: #94ce9b!important;
+}
+span.badge-warning{
+  background-color: #185a89!important;
+}
+span.badge-danger{
+  background-color: #D13232!important;
+}
+span.badge-dark{
+  background-color: #121212!important;
+}
+
+span.badge-gray{
+  background-color: #D2D2D2!important;
+}
+
+.gray{
+  color: #D2D2D2!important;
+}
+
+.success{
+  color: #94ce9b!important;
+}
+.danger{
+  color: #D13232!important;
+}
+
+.mat-snack-bar-container.mat-snack-bar-success{
+  background-color: #94ce9b!important;
+}
+/*.border-top-primary{
+  border-top: solid 6px #242451!important;
+}
+.border-top-success{
+  border-top: solid 6px #94ce9b!important;
+}
+.border-top-warning{
+  border-top: solid 6px #d0667a!important;
+}
+.border-top-danger{
+  border-top: solid 6px #f44336 !important;
+}
+.border-top-dark{
+  border-top: solid 6px #121212!important;
+}*/
+
+.mat-card-header-primary-two{
+  background-color: #0b173b !important;
+}
+.mat-card-header-primary{
+  background-color: #242451!important;
+}
+.mat-card-header-success{
+  background-color: #94ce9b!important;
+}
+.mat-card-header-warning{
+  background-color: #d0667a!important;
+}
+.mat-card-header-danger{
+  background-color: #f44336 !important;
+}
+.mat-card-header-dark{
+  background-color: #121212!important;
+}
+
+/*Para eliminar el border al rededor del boton hamburguesa*/
+:focus {
+  outline: none !important;
+}
+
+/*Agrega el fondo del hover, focus y active en el sidenav y toolbar*/
+.mat-nav-list .mat-list-item-content:hover, .mat-nav-list .mat-list-item:focus,.mat-nav-list .mat-list-item.active {
+  background-color: rgb(20,90,137) !important;
+  color: #ffffff
+}
+.mat-nav-list .mat-list-item.item_not_hover:focus{
+  background: none !important;
+}
+
+.toolbar a{
+  color: #ffffff !important;
+}
+
+.toolbar a:hover,.toolbar a.active{
+  color:  rgb(20,90,137) !important;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-dialog-actions{
+  display: block !important;
+}
+
+
+
+
+/*Estilos y efectos hover para los cards de dashboard*/
+.main_dashboard .carousel_promotions{
+  margin: 1rem 0;
+}
+.main_dashboard .mat-card{
+  display: inline-block;
+  width:100%;
+  padding: 0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12) !important;
+  transition: all .15s cubic-bezier(.33,.66,.66,1);
+  transition-property: all;
+  transition-duration: .15s;
+  transition-timing-function: cubic-bezier(.33,.66,.66,1);
+  transition-delay: initial;
+  margin: 1rem 0;
+  overflow: hidden !important;
+  background-color: #ffffff;
+}
+.main_dashboard .mat-card .mat-card-content {
+  border: solid 1px #d2d2d2;
+}
+.main_dashboard .mat-card:hover{
+  box-shadow: 0 7px 12px rgba(0,0,0,.45) !important;
+  transform: translate3d(0,-3px,0);
+}
+
+.main_dashboard .mat-card .mat-card-header{
+  background-color: #242451;
+  color: white;
+}
+
+.mat-card-header .mat-card-title{
+  font-size: .8rem !important;
+  padding: .5rem 0 !important;
+}
+
+.main_dashboard .mat-card .mat-card-actions{
+  margin: 0 !important;
+  background: #f2f2f2;
+  padding: .5rem 0!important;
+  font-size: 9px;
+}
+.main_dashboard .mat-card .mat-card-actions .mat-icon{
+  position: relative;
+  top: 6px;
+}
+.main_dashboard .mat-card .mat-card-actions button{
+  color: white;
+  background-color: #242451;
+  transition: all .15s cubic-bezier(.33,.66,.66,1);
+  transition-property: all;
+  transition-duration: .15s;
+  transition-timing-function: cubic-bezier(.33,.66,.66,1);
+  transition-delay: initial;
+  font-size: 9px;
+}
+.main_dashboard .mat-card .mat-card-actions button:hover{
+  box-shadow: 0 7px 12px rgba(0,0,0,.45) !important;
+  transform: translate3d(0,-3px,0);
+}
+
+.left {
+  text-align: left;
+}
+
+.main_dashboard .mat-card-content{
+  padding: 1rem 0;
+  margin:0;
+  text-align: center;
+}
+.main_dashboard .titulo {
+  justify-content: center;
+  text-align: center;
+}
+.main_dashboard .mat-card-header .mat-card-title{
+  margin:0;
+}
+
+.main_dashboard .principal_graph {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.main_dashboard .btn-floating {
+    display: inline-block;
+    color: #fff;
+    position: relative;
+    z-index: 1;
+    width: 37px;
+    height: 37px;
+    line-height: 37px;
+    padding: 0;
+    border-radius: 50%;
+    transition: .3s;
+    background-color: #f2f2f2!important;
+}
+.main_dashboard .box{
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+}
+.main_dashboard .arrow_box{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  webkit-align-items: center; 
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.main_dashboard .waves_effect {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    vertical-align: middle;
+    z-index: 1;
+    will-change: opacity,transform;
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+}
+
+.main_dashboard .waves_effect:hover{
+  box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+  opacity: .8!important;
+}
+.main_dashboard .waves_effect:focus:active{
+  box-shadow: none;
+}
+.main_dashboard .mat-icon{
+  color: #000000 !important;
+}
+.main_dashboard .pad_arrow{
+  padding: 0 1rem;
+}
+
+.main_dashboard .carousel-item img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #f2f2f2; 
+    border-radius: 10px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #d2d2d2; 
+}
+
+.spinner{
+  padding-left: 45%;
+  padding-top: 10%;
+}
+
+.main_admin .mat-card-header .mat-card-title{
+  font-size: .8rem;
+  padding: .5rem 0;
+}
+
+.main_admin .mat_card_content{
+  justify-content: center !important;
+  text-align: center;
+}
+.main_admin .mat_card_content{
+  padding: 1rem !important;
+  margin:0 !important;
+}
+
+/* Detalle de servicio*/
+.main_request-detail {
+  display: inline-block;
+  width:100%;
+  padding: 0 !important;
+}
+
+.main_request-detail .titulo {
+  text-align: center;
+}
+
+.main_request-detail section div div{
+  display:inline-block;
+}
+.main_request-detail section div p{
+  display:inline-block;
+  width: 300px;
+}
+
+.main_request-detail .derecho {
+  float: right;
+}
+
+.main_request-detail section div div label {
+  width: 100px;
+}
+
+.main_request-detail #tiposervicio {
+  width:140px;
+}
+
+.main_request-detail .extra label {
+  display: block;
+  text-align: center;
+}
+
+.main_request-detail .extra p {
+  display: block;
+  text-align: center;
+}
+
+.main_request-detail .extra .boton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main_request-detail .extra .boton button {
+  display: inline-block;
+  margin: 15px;
+  background: #242451;
+  color: #fff;
+  width: 90px;
+}
+
+.main_request-detail .move label {
+  margin: 1em;
+}
+
+.main_request-detail input {
+  pointer-events: none;
+}
+
+.main_request-detail textarea {
+  pointer-events: none;
+}
+
+.main_request-detail .extra div a {
+  max-width: 150px;
+  max-height: 150px;
+  background-color: #0b173b;
+}
+
+
+/* Dashboard de administrador */
+.main_admin_dashboard .mat-card{
+  width: 100%;
+  padding: 0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12) !important;
+  margin: 1rem 0;
+  overflow: hidden !important;
+  background-color: #ffffff;
+}
+
+.main_admin_dashboard div {
+  display: inline-block;
+}
+
+.main_admin_dashboard button{
+  
+  color: white;
+  background-color: #242451;
+  transition: all .15s cubic-bezier(.33,.66,.66,1);
+  transition-property: all;
+  transition-duration: .15s;
+  transition-timing-function: cubic-bezier(.33,.66,.66,1);
+  transition-delay: initial;
+/* font-size: 9px;*/
+}
+
+.main_admin_dashboard h3, button {
+  text-align: center;
+}
+
+.main_admin_dashboard button {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+}
+
+.claim {
+
+}
+
+.claim .centro{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.suggestion {
+
+}
+
+.suggestion .centro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.incidence {
+
+}
+
+.incidence .centro {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+
+.mat-table thead{
+  background-color: #242451!important;
+}
+.mat-table thead th{
+  color:#fff !important;
+}
+/* REPORTES*/
+.main_report .reporte {
+  background-color: #e4e3e3;
+}
+
+.main_report mat-card {
+  border-radius:10px 10px 10px 10px;
+}
+
+.main_report button{
+  background-color: #242451;
+    color: white;
+}
+.main_report .botones div{
+  display:inline-block;
+}
+
+.main_report .botones .exportar,.filtro {
+  float:right;
+  padding: 5px;
+}
+
+.main_report .grafica {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.padding-sidenav ~ .mat-expansion-panel-content>.mat-expansion-panel-body>.mat-list-item>.mat-list-item-content{
+  padding-left: 40px !important;
+}
+
+
+.mat-card .mat-card-header {
+    background-color: #242451;
+    color: white;
+}
+
+.mat-card{
+  padding-top:0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.main_company_show .company h2,h4{
+  text-align: center;
+}
+
+.main_company_show .company .comenzar{
+  text-align: center;
+  margin: 0 auto;
+}

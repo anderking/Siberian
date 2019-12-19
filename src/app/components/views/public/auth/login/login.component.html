@@ -1,0 +1,71 @@
+
+<!------ Include the above in your HEAD tag ---------->
+
+<section class="login-block">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 login-sec " id="loginform">
+        <form class="login-form" #loginForm="ngForm" (ngSubmit)="login(loginForm)">
+          <div class="form-group">
+            <img src="../../../../../../assets/img/logo/logo_login.png" width="100" height="100">
+          </div>  
+          <div class="form-group">
+            <input name="email" [(ngModel)]="email" class="form-control" type="text" placeholder="Correo" required/>
+          </div>
+          <div class="form-group">
+            <input name="password" [(ngModel)]="password" class="form-control" type="password" placeholder="Contraseña" required />
+          </div>
+          <div class="form-group">
+            <br>
+            <button mat-raised-button class="secondary" type="submit" class="mr-3">Ingresar</button>
+          </div>
+
+          <p>¿Olvidaste tu contraseña? <a [routerLink]="['/login']">Obtén ayuda</a></p>
+          <p>¿Aún no tienes cuenta? <a [routerLink]="['/register']">Suscríbete</a></p>
+          <p><a [routerLink]="['/login']">Seguir como invitado</a></p>
+          
+        </form>
+      </div>
+      <div class="col-md-8 banner-sec">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active">
+              <img class="d-block img-fluid" src="../../../../../../assets/img/sliders/login_slider_1.jpg" style="height: 510px"alt="First slide">
+              <div class="carousel-caption d-none d-md-block">
+                <div class="banner-text">
+                  <h2>¿Quiénes Somos?</h2>
+                  <p>Empresa dedicada a ofrecer soluciones a los problemas en los hogares de la familia venezolana</p>
+                </div>  
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="../../../../../../assets/img/sliders/login_slider_2.jpg" style="height: 510px"alt="First slide">
+              <div class="carousel-caption d-none d-md-block">
+                <div class="banner-text">
+                  <h2>Nuestra Visión</h2>
+                  <p>Ser la empresa líder en Venezuela en la reparación de todo tipo de artefacto e infraestructura</p>
+                </div>  
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img class="d-block img-fluid" src="../../../../../../assets/img/sliders/login_slider_3.jpg" style="height: 510px" alt="First slide">
+              <div class="carousel-caption d-none d-md-block">
+                <div class="banner-text">
+                  <h2>Nuestros servicios</h2>
+                  <p>Infraestructura, línea blanca, línea marrón, construcción, plomería, electrodomésticos.
+                    ¡Queremos llegar a ser mucho más que una empresa de servicios para ti!
+                  </p>
+                </div>  
+              </div>
+            </div>
+          </div>     
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

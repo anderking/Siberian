@@ -1,0 +1,148 @@
+<div class="container">
+	<h2 *ngIf="promotion" class="text-center">Promoción</h2>
+	<button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+	<hr>
+	<div *ngIf="promotion">
+
+		<div class="row">
+			<div class="col-sm-12">
+				<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+					<ng-container matColumnDef="name">
+						<th mat-header-cell *matHeaderCellDef> Nombre </th>
+						<td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+					</ng-container>
+
+					<ng-container matColumnDef="description">
+						<th mat-header-cell *matHeaderCellDef> Descripción </th>
+						<td mat-cell *matCellDef="let row"> {{ row.description }} </td>
+					</ng-container>
+
+					<ng-container matColumnDef="type">
+						<th mat-header-cell *matHeaderCellDef> Tipo </th>
+						<td mat-cell *matCellDef="let row">
+							<div *ngIf="row.type=='generic'">Genérico</div>
+							<div *ngIf="row.type=='target'">Específico</div>
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="SubcategoryId">
+						<th mat-header-cell *matHeaderCellDef> Subcategoría </th>
+						<td mat-cell *matCellDef="let row">
+							<div *ngIf="row.type=='generic'">{{row.subcategory.name}}</div>
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="EquipinfraId">
+						<th mat-header-cell *matHeaderCellDef> Equipo Infraestructura </th>
+						<td mat-cell *matCellDef="let row">
+							<div *ngIf="row.type=='target'">{{ row.equipinfras.name}}</div>
+						</td>
+					</ng-container>
+
+					<ng-container matColumnDef="percentDiscount">
+						<th mat-header-cell *matHeaderCellDef> Descuento </th>
+						<td mat-cell *matCellDef="let row"> {{ row.percentDiscount}} </td>
+					</ng-container>
+					<ng-container matColumnDef="dateStart">
+						<th mat-header-cell *matHeaderCellDef> Fecha Inicio </th>
+						<td mat-cell *matCellDef="let row"> {{ row.dateStart  }} </td>
+					</ng-container>
+
+					<ng-container matColumnDef="dateEnd">
+						<th mat-header-cell *matHeaderCellDef> Fecha Culminación </th>
+						<td mat-cell *matCellDef="let row"> {{ row.dateEnd }} </td>
+					</ng-container>
+
+
+					<ng-container matColumnDef="status">
+						<th mat-header-cell *matHeaderCellDef> Estatus </th>
+						<td mat-cell *matCellDef="let row">
+							<span *ngIf="row.status=='active'" class="badge badge-success">{{row.status | titlecase}}</span>
+							<span *ngIf="row.status=='deleted'" class="badge badge-danger">{{row.status | titlecase}}</span>
+						</td>
+					</ng-container>
+
+					<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+					<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+				</table>
+			</div>
+		</div>
+
+		<br>
+
+		<div class="row">
+			<div class="col-sm-12">
+				<h2 class="text-center">Parámetros</h2>
+			</div>
+		</div>
+
+
+
+		<hr>
+
+		<div *ngIf="parameters">
+
+			<div class="row">
+				<div class="col-sm-12">
+					<mat-form-field>
+						<input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+					</mat-form-field>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="mat-elevation-z8">
+
+						<div *ngIf="parameters.length<=0 && !failedConect">
+							<div class="row">
+								<div class="col-sm-12">
+									<h3 class="text-center mt-3 mb-3">Esta promoción no tiene parámetros asociados</h3>
+								</div>
+							</div>
+						</div>
+
+
+						<table *ngIf="parameters.length>0" mat-table [dataSource]="dataSourceP">
+
+
+							<ng-container matColumnDef="name">
+								<th mat-header-cell *matHeaderCellDef> Nombre </th>
+								<td mat-cell *matCellDef="let row"> {{row.name}} </td>
+							</ng-container>
+
+							<ng-container matColumnDef="description">
+								<th mat-header-cell *matHeaderCellDef> Descripción </th>
+								<td mat-cell *matCellDef="let row"> {{row.description}}</td>
+							</ng-container>
+
+							<ng-container matColumnDef="status">
+								<th mat-header-cell *matHeaderCellDef> Estatus </th>
+								<td mat-cell *matCellDef="let row">
+									<span *ngIf="row.status=='active'" class="badge badge-success">{{row.status | titlecase}}</span>
+									<span *ngIf="row.status=='deleted'" class="badge badge-danger">{{row.status | titlecase}}</span>
+								</td>
+							</ng-container>
+
+
+
+
+							<tr mat-header-row *matHeaderRowDef="displayedColumnsP"></tr>
+							<tr mat-row *matRowDef="let row; columns: displayedColumnsP;">
+							</tr>
+						</table>
+
+						<!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+	</div>
+
+
+
+</div>

@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>Actualizar teléfono</h1>
+<div mat-dialog-content>
+	<form #updateForm="ngForm" (ngSubmit)="save(updateForm)">
+		
+		<mat-form-field>
+			<input matInput name="number" placeholder="Número" [(ngModel)]="data.phone.number" #validationNumber="ngModel" minlength="10" required>
+		</mat-form-field>
+		
+		<mat-form-field>
+          <mat-select name="phoneType" [(ngModel)]="data.phone.phoneType" placeholder="Seleccione un Tipo de Teléfono" required>
+            <mat-option *ngFor="let phoneType of phoneTypes" [value]="phoneType.id">{{ phoneType.name }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+		<div mat-dialog-actions>
+			<p class="text-center">
+				<button mat-raised-button color="warn" [mat-dialog-close]="false">Cancelar</button>
+				<button type="submit" mat-raised-button color="primary" [disabled]="!updateForm.form.valid">Guardar</button>
+			</p>
+		</div>
+	</form>
+</div>

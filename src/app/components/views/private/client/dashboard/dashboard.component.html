@@ -1,0 +1,309 @@
+<div class="main_dashboard">
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <a [routerLink]="['/auth/client/request']">
+          <mat-card class="mat-card">
+            <mat-card-header>
+              <mat-card-title><b>Solicitudes</b></mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="mat_card_content">
+              <mat-icon class="dashboard_icon text-center">assignment</mat-icon>
+              <h3 class="text-center">Solicitudes</h3>
+                  <div class=row>
+                      <div class="col-md-4">
+                        <ul style="list-style-type:none;">
+                          <li> <span class="small mr-3">Solicitadas: <span class="badge badge-primary">{{totalRevisionRequested}}</span></span></li>
+                          <li> <span class="small mr-3">Aprobadas: <span class="badge badge-primary">{{totalRevisionApproved}}</span></span></li>
+                          
+                        </ul>
+                      </div>
+                      <div class="col-md-4">
+                          <ul style="list-style-type:none;" class="left" >
+                            <li ><span class="small mr-3">Rechazadas: <span class="badge badge-primary">{{totalRevisionRejected}}</span></span></li>
+                            <li><span class="small mr-3">Diagnosticadas: <span class="badge badge-primary">{{totalRevisionDiagnosticated}}</span></span></li>
+                            
+                          </ul>
+                      </div>
+                      <div class="col-md-4">
+                          <ul style="list-style-type:none;" >
+                              <li><span class="small mr-3">Irreparables: <span class="badge badge-primary">{{totalRevisionLost}}</span></span></li>
+                              <li><span class="small mr-3">Finalizadas: <span class="badge badge-primary">{{totalRevisionFinalized}}</span></span></li>
+                            
+                          </ul>
+                      </div>
+                  </div>  
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+      <div class="col-sm-6">
+        <a [routerLink]="['/auth/client/service']">
+          <mat-card class="mat-card">
+            <mat-card-header>
+              <mat-card-title><b>Servicios</b></mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="mat_card_content">
+              <mat-icon class="dashboard_icon text-center">assignment_ind</mat-icon>
+              <h3 class="text-center">Servicios</h3>
+              <div class="row">
+                  <div class="col-md-4">
+                    <ul style="list-style-type:none;"class="left">
+                      <li><span class="small mr-3">Cotizados: <span class="badge badge-primary">{{totalServiceOrderBudgeted}}</span></span></li>
+                      <li><span class="small mr-3">Aprobados: <span class="badge badge-primary">{{totalServiceOrderApproved}}</span></span></li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4">
+                    <ul style="list-style-type:none;">
+                      <li><span class="small mr-3">Rechazados: <span class="badge badge-primary">{{totalServiceOrderRejected}}</span></span></li>
+                      <li><span class="small mr-3">Finalizados: <span class="badge badge-primary">{{totalServiceOrderFinalized}}</span></span></li>
+                    </ul>
+                  </div>
+                  <div class="col-md-4">
+                      <ul style="list-style-type:none;" class="left">
+                        <li> <span class="small mr-3">Garantía: <span class="badge badge-primary">{{totalServiceOrderWarranty}}</span></span></li>
+                        <li> <span class="small mr-3">OTRO<span class="badge badge-primary"></span></span></li>
+                      </ul>
+                  </div>
+              </div>
+
+            </mat-card-content>
+          </mat-card>
+        </a>
+      </div>
+    </div>
+
+
+    <div class="row">
+
+      <div class="col-sm-6">
+        <a [routerLink]="['/auth/client/incidence']">
+          <mat-card class="mat-card">
+            <mat-card-header>
+              <mat-card-title><b>Incidencias</b></mat-card-title>
+            </mat-card-header>
+            <mat-card-content class="mat_card_content">
+              <mat-icon class="dashboard_icon text-center">warning</mat-icon>
+              <h3 class="text-center">Incidencias</h3>
+              <span class="text-center small mr-3">Reportadas: <span class="badge badge-primary">3</span></span>
+            </mat-card-content>
+        </mat-card>
+      </a>
+    </div>
+    <div class="col-sm-6">
+      <a [routerLink]="['/auth/client/claim']">
+        <mat-card class="mat-card">
+          <mat-card-header>
+            <mat-card-title><b>Reclamos</b></mat-card-title>
+          </mat-card-header>
+          <mat-card-content class="mat_card_content">
+            <mat-icon class="dashboard_icon text-center">feedback</mat-icon>
+            <h3 class="text-center">Reclamos</h3>
+            <span class="text-center small mr-3">Reportados: <span class="badge badge-primary">3</span></span>
+          </mat-card-content>
+        </mat-card>
+      </a>
+    </div>
+
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div id="carouselPromotion" class="carousel" data-ride="carousel">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <h2>Promociones Para ti</h2>
+              <hr>
+            </div>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <div class="carousel-inner carousel_promotions service">
+              <div class="carousel-item active">
+                <div class="container box">
+                  <div class="row justify-content-between arrow_box">
+                    <div class="col-md-6">
+                      <button mat-mini-fab class="waves_effect btn-floating" href="#carouselPromotion" title="Anterior" data-slide="prev">
+                        <mat-icon>keyboard_arrow_left</mat-icon>
+                      </button>
+                    </div>
+                    <div class="col-md-6 text-md-right">
+                      <button mat-mini-fab class="waves_effect btn-floating" href="#carouselPromotion" title="Siguiente" data-slide="next">
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row pad_arrow">
+                    <div class="col-sm-12">
+                      <img src="../../../../assets/img/promotion/promocion_1.jpg" alt="">
+                    </div>
+                  </div>
+                </div>       
+              </div>
+              <div class="carousel-item">
+                <div class="container box">
+                  <div class="row justify-content-between arrow_box">
+                    <div class="col-md-6">
+                      <button mat-mini-fab class="waves_effect btn-floating" href="#carouselPromotion" title="Anterior" data-slide="prev">
+                        <mat-icon>keyboard_arrow_left</mat-icon>
+                      </button>
+                    </div>
+                    <div class="col-md-6 text-md-right">
+                      <button mat-mini-fab class="waves_effect btn-floating" href="#carouselPromotion" title="Siguiente" data-slide="next">
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row pad_arrow">
+                    <div class="col-sm-12">
+                      <img src="../../../../assets/img/promotion/promocion_2.jpg" alt="">
+                    </div>
+                  </div>
+                </div>       
+              </div>
+              <div class="carousel-item">
+                <div class="container box">
+                  <div class="row justify-content-between arrow_box">
+                    <div class="col-md-6">
+                      <button mat-mini-fab class="waves_effect btn-floating" href="#carouselPromotion" title="Anterior" data-slide="prev">
+                        <mat-icon>keyboard_arrow_left</mat-icon>
+                      </button>
+                    </div>
+                    <div class="col-md-6 text-md-right">
+                      <button mat-mini-fab class="waves_effect btn-floating" href="#carouselPromotion" title="Siguiente" data-slide="next">
+                        <mat-icon>keyboard_arrow_right</mat-icon>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="row pad_arrow">
+                    <div class="col-sm-12">
+                      <img src="../../../../assets/img/promotion/promocion_3.jpg" alt="">
+                    </div>
+                  </div>
+                </div>       
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2>Servicios que te pueden interesar</h2>
+            <hr>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-3">
+            <a [routerLink]="['/auth/client/catalog']">
+              <mat-card class="servicio">
+                <mat-card-content class="mat_card_content service_interesantes">
+
+                  <img src="../../../../assets/img/catalogue/lavadora_service.png" alt="" class="card-img-top">
+
+                </mat-card-content>
+              </mat-card>
+            </a>
+            <h5 class="text-center">Lavadora</h5>
+          </div>
+          <div class="col-md-3">
+            <a [routerLink]="['/auth/client/catalog']">
+              <mat-card class="servicio">
+                <mat-card-content class="mat_card_content service_interesantes">
+
+                  <img src="../../../../assets/img/catalogue/aire_service.png" alt="" class="card-img-top">
+
+                </mat-card-content>
+              </mat-card>
+            </a>
+            <h5 class="text-center">Aire Acondicionado</h5>
+          </div>
+          <div class="col-md-3">
+            <a [routerLink]="['/auth/client/catalog']">
+              <mat-card class="servicio">
+                <mat-card-content class="mat_card_content service_interesantes">
+
+                  <img src="../../../../assets/img/catalogue/nevera_service.png" alt="" class="card-img-top">
+
+                </mat-card-content>
+              </mat-card>
+            </a>
+            <h5 class="text-center">Nevera</h5>
+          </div>
+          <div class="col-md-3">
+            <a [routerLink]="['/auth/client/catalog']">
+              <mat-card class="servicio">
+                <mat-card-content class="mat_card_content service_interesantes">
+                  <img src="../../../../assets/img/catalogue/microonda_service.png" alt="" class="card-img-top">
+
+                </mat-card-content>
+              </mat-card>
+            </a>
+            <h5 class="text-center">Microondas</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12">
+            <h2>Categorías Populares</h2>
+            <hr>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-3" >
+            <a [routerLink]="['/auth/client/catalog']">
+
+              <img src="../../../../assets/img/category/Electrodomesticos.png" alt="" class="populate">
+
+            </a>
+            <h5 class="text-center">Electrodomésticos</h5>
+          </div>
+          <div class="col-md-3" >
+            <a [routerLink]="['/auth/client/catalog']">
+
+              <img src="../../../../../assets/img/category/Electricidad.png" alt="" class="populate">
+
+            </a>
+            <h5 class="text-center">Electricidad</h5>
+          </div>
+          <div class="col-md-3" >
+            <a [routerLink]="['/auth/client/catalog']">
+
+              <img src="../../../../../assets/img/category/Refrigeracion.png" alt="" class="populate">
+
+            </a>
+            <h5 class="text-center">Refrigeración</h5>
+          </div>
+          <div class="col-md-3" >
+            <a [routerLink]="['/auth/client/catalog']">
+
+              <img src="../../../../../assets/img/category/Limpieza.png" alt="" class="populate">
+
+            </a>
+            <h5 class="text-center">Limpieza</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>

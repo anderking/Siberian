@@ -1,0 +1,45 @@
+<div class="container" *ngIf="company">
+	<div class="row">
+		<div class="col-sm-12">
+			<h2 class="text-center">Configura los datos de tu empresa</h2>
+			<button mat-raised-button color="primary" [routerLink]="['/auth/admin/configurations/company/edit/1']">Editar Información</button>
+			<button mat-raised-button color="primary" class="ml-3" [routerLink]="['/auth/admin/configurations']">Volver</button>
+
+			<hr>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-12">  
+			<div>
+				<mat-card>
+					<mat-list>
+						<mat-list-item> <b>Nombre: </b>{{company.name}}</mat-list-item>
+						<mat-list-item> <b>Rif: </b> {{company.rif}}</mat-list-item>
+						<mat-list-item> <b>Quiénes somos:</b>{{company.aboutUs}}</mat-list-item>
+						<mat-list-item> <b>Visión: </b> {{company.vision}}</mat-list-item>
+						<mat-list-item> <b>Primer Teléfono: </b> {{company.phoneOne}}</mat-list-item>
+						<mat-list-item> <b>Segundo Teléfono: </b> {{company.phoneTwo}}</mat-list-item>
+						<mat-list-item> <b>Dirección: </b> {{company.address}}</mat-list-item>
+						<mat-list-item> <b>Facebook: </b>{{company.facebook}}</mat-list-item>
+						<mat-list-item> <b>Instagram: </b>{{company.instagram}}</mat-list-item>
+						<mat-list-item> <b>Twitter: </b> {{company.twitter}}</mat-list-item>
+						<mat-list-item> <b>Imagen: </b></mat-list-item>
+					</mat-list>
+				</mat-card>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div *ngIf="!company && !failedConect">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 spinner">
+				<mat-spinner></mat-spinner>
+			</div>
+		</div>
+	</div>
+</div>
+<div *ngIf="failedConect">
+	<h6 class="text-center">{{failedConect}}</h6>
+</div>

@@ -1,0 +1,66 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-sm-12">
+      <h2 class="text-center">Editar Variedad</h2>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+    </div>  
+  </div>
+  
+  <hr>
+  
+  <div class="row">
+    <div class="col-sm-12">
+      <mat-card>
+        <mat-card-header class="titulo border-top-danger">
+          <mat-card-title>
+            {{ variety.name }}
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="row">
+            <div class="col-sm-8 offset-2">
+              <form #updateForm="ngForm" (ngSubmit)="update(updateForm)">
+                <br>
+
+                <mat-form-field>
+                  <input matInput id="inputName" name="name" placeholder="Nombre" [(ngModel)]="variety.name" required>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <textarea matInput name="description" placeholder="Descripción" [(ngModel)]="variety.description" required></textarea>
+                </mat-form-field> 
+
+                <br>
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <button mat-raised-button color="primary" type="submit">Guardar</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  
+  <div *ngIf="!variety && !failedConect">
+    <div class="row">
+      <div class="col-sm-12 spinner">
+        <mat-spinner></mat-spinner>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="failedConect">
+    <h6 class="text-center">{{failedConect}}</h6>
+  </div>
+  
+</div>

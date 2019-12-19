@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+  <h1 mat-dialog-title>Agendar servicio</h1>
+</div>
+
+<div mat-dialog-content>
+  <div class="justify-content-center">
+    <div class="row">
+      <div class="col-md-6">
+        <p>Selecciona los&nbsp; {{data.days}}&nbsp; días para tu servicio.</p>
+      </div>
+      <div class="col-md-6">
+        <dp-date-picker matInput [(ngModel)]="data.selectedDates" [config]="datePickerConfig" [minDate]="min"
+          [theme]="dp-material" [disabled]="data.selectedDates.length >= data.days"></dp-date-picker>
+      </div>
+		</div>
+		
+    <div class="row">
+			<div class="col-md-6">
+				<p>Días seleccionados: &nbsp; {{data.selectedDates.length}}</p>
+			</div>
+		</div>
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
+    <div class="row">&nbsp;</div>
+  </div>
+</div>
+
+<div mat-dialog-actions>
+  <div class="text-center">
+    <button mat-raised-button color="warn" [mat-dialog-close]="false">Cancelar</button>
+    <button mat-raised-button color="primary"  [mat-dialog-close]="data.selectedDates">Aceptar</button>
+  </div>
+</div>

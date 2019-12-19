@@ -1,0 +1,64 @@
+<div class="main_dashboard">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="row">
+					<div class="col-sm-12">
+						<h2 class="text-center">Seleccione un Modelo</h2>
+					</div>
+				</div>
+				<div class="row">
+					<div class="offset-sm-3 col-sm-6">
+						 <mat-form-field class="example-full-width">
+						 	<input matInput id="filterVarietiesDetail" name="filterVarietiesDetail" [(ngModel)]="filterVarietiesDetail" placeholder="Buscar modelo...">
+						 </mat-form-field>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<button mat-raised-button color="primary"  (click)="goBack()">Volver</button>
+					</div>
+				</div>
+				<hr>
+				<div *ngIf="varietyDetails">
+
+					<div *ngIf="varietyDetails.length>0">
+
+						<div class="row">
+							<div class="col-md-4" *ngFor="let varietyDetail of varietyDetails | searchVarietiesDetail:filterVarietiesDetail">
+								<a [routerLink]="['/auth/client/catalog/confirm',{equipinfrasName:equipinfras.name,categoryName:categoryName, subcategoryName:equipinfras.subcategory.name, varietyName:variety.name,varietyDetailName:varietyDetail.name,varietyDetailDescription:varietyDetail.description}]" (click)="SetIdVarietyDetail(varietyDetail.id)">
+									<mat-card class="servicio">
+										<mat-card-header class="titulo mat-card-header-primary">
+											<mat-card-title>{{ variety.name }}</mat-card-title>
+										</mat-card-header>
+										<mat-card-content class="mat_card_content">
+											<div class="row">
+												<div class="col-sm-5">
+													<img src="https://res.cloudinary.com/teamwatson/image/upload/v1574783497/EN-BLANCO_ovel9g.png" alt="" class="card-img-top">
+												</div>
+												<div class="col-sm-7">
+													<b>Modelo: </b>{{ varietyDetail.name }}
+													<br>
+													<b>Descripción: </b> {{ varietyDetail.description }}
+												</div>
+											</div>
+										</mat-card-content>
+									</mat-card>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div *ngIf="varietyDetails.length<=0">
+						<div class="row">
+							<div class="col-md-12">
+								<h3 class="text-center">No hay modelos registrados para esta marca</h3>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,25 @@
+a{
+	cursor:pointer;
+}
+.deleteColor{
+	color:#D13232 !important;
+}
+.deleteColor:hover{
+	color: red !important;
+}
+
+.editColor{
+	cursor:pointer;
+	color:#2979ff !important;
+}
+.editColor:hover{
+	color: blue !important;
+}
+
+.addLocation,.addPhone{
+	color: #283593 !important;
+}
+
+.addLocation:hover,.addPhone:hover{
+	color: blue !important;
+}

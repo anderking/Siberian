@@ -1,0 +1,198 @@
+<div class="main_request_detail">
+
+  <div class="container" *ngIf="revision">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h4 class="titulo text-center">
+          Solicitud
+          <span *ngIf="revision.status=='diagnosticated'" class="badge badge-warning">Diagnosticada</span>
+          <span *ngIf="revision.status=='finalized'" class="badge badge-success">Finalizada</span>
+        </h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <mat-card>
+          <mat-card-header class="titulo border-top-danger">
+            <mat-card-title>
+              <a [routerLink]="['/auth/lender/request/detail',revision.id]" class="title" >{{ revision.id }}</a>
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <br>
+            <div class="row">
+              <div class="col-sm-12">
+                <h2 class="text-center">Detalles</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-7">
+                <mat-list>
+                  <h3 mat-subheader>Datos de la Revisión</h3>
+                  <mat-list-item><h4 mat-line><b>Cliente: </b>{{revision.user.firstName | titlecase }} {{revision.user.lastName | titlecase}}</h4></mat-list-item>
+                  <mat-list-item><h4 mat-line><b>Dirección: </b>{{ revision.location.address }}</h4></mat-list-item>
+                  <mat-list-item><h4 mat-line><b>Fecha de la Solicitud: </b> {{ revision.createdAt |date: 'dd/MM/yyyy'}}</h4></mat-list-item>
+                  <mat-list-item><h4 mat-line><b>Fecha de la Revisión: </b>{{ revision.calendar.date |date: 'dd/MM/yyyy' }}</h4></mat-list-item>
+                  <mat-list-item>
+                    <h4 mat-line><b>Turno: </b>
+                      <span *ngIf="revision.calendar.turn=='morning'">Mañana</span>
+                      <span *ngIf="revision.calendar.turn=='afternoon'">Tarde</span>
+                    </h4>
+                  </mat-list-item>
+                  <mat-list-item><h4 mat-line><b>Descripción del Problema: </b>{{ revision.description }}</h4></mat-list-item>
+                  <mat-list-item><h4 mat-line><b>Prestador Seleccionado: </b>{{revision.calendar.lender.firstName | titlecase }} {{revision.calendar.lender.lastName | titlecase}}</h4></mat-list-item>
+                  <mat-list-item><h4 mat-line><b>Precio: </b>{{ revision.price }} Bs.S</h4></mat-list-item>
+
+                  <mat-list-item *ngIf="revision.status=='requested'"><h4 mat-line><b>Status: </b> Solicitud en espera de ser Aprobada</h4></mat-list-item>
+
+                  <mat-list-item *ngIf="revision.status=='approved'"><h4 mat-line><b>Status: </b> Solicitud Aprobada, en espera por diagnostico. <a [routerLink]="['/auth/lender/diagnosis/detail',revision.id]" class="title" >Diagnosticar!!</a></h4></mat-list-item>
+
+                  <div *ngIf="revision.status=='rejected'">
+                    <mat-list-item>
+                      <h4 mat-line><b>Status: </b> Solicitud Rechazada</h4>
+                    </mat-list-item>
+                    <div class="ml-3">
+                      <div *ngFor="let bitacora of revision.bitacoras">
+                        <div *ngIf="bitacora.eventType=='closure'">
+                          <mat-list-item>
+                            <h4 mat-line><b>Motivo: </b> {{ bitacora.motive.name }} - {{ bitacora.motive.description }} - {{ bitacora.description }}</h4>
+                          </mat-list-item>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <mat-list-item *ngIf="revision.status=='diagnosticated'"><h4 mat-line><b>Status: </b> Solicitud Diagnosticada, en espera por presupuesto. <a [routerLink]="['/auth/lender/budget/detail',revision.id]" class="title" >Presupuestar!!</a></h4></mat-list-item>
+
+                  <div *ngIf="revision.status=='irreparable'">
+                    <mat-list-item>
+                      <h4 mat-line><b>Status: </b> Solicitud Rechazada</h4>
+                    </mat-list-item>
+                    <div class="ml-3">
+                      <div *ngFor="let bitacora of revision.bitacoras">
+                        <div *ngIf="bitacora.eventType=='closure'">
+                          <mat-list-item>
+                            <h4 mat-line><b>Motivo: </b> {{ bitacora.motive.name }} - {{ bitacora.motive.description }} - {{ bitacora.description }}</h4>
+                          </mat-list-item>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </mat-list>
+              </div>
+
+              <div class="col-sm-5">
+                <mat-list>
+                  <h3 mat-subheader>Datos del Equipo</h3>
+                  <mat-list-item><h4 mat-line><b>Equipo: </b> {{ revision.varietyDetail.Equipinfra.name }}</h4></mat-list-item>
+                  <mat-list-item><h4 mat-line><b>Marca: </b>{{ revision.varietyDetail.variety.name }}</h4></mat-list-item>
+                  <mat-list-item><h4 mat-line><b>Modelo: </b>{{ revision.varietyDetail.name }}</h4></mat-list-item>
+                  <mat-list-item><h4 mat-line><b>Imagen: </b></h4></mat-list-item>
+                  <mat-card class="card_img imgRequest">
+                    <mat-card-content class="mat_card_content">
+                      <img [src]="revision?.imageRequestUrl || urldelafault" alt="">
+                    </mat-card-content>
+                  </mat-card>
+                </mat-list>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-sm-8 offset-2">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <h2 class="text-center">Presupuesto</h2>
+                  </div>
+                </div>
+
+                <form #updateForm="ngForm" (ngSubmit)="register(updateForm)">
+
+                  <div class="row">
+                    <div class="col-sm-12">
+
+                      <mat-form-field>
+                        <mat-select name="serviceDetails" [(ngModel)]="serviceDetailsSelected" placeholder="Seleccione un Servicio" (ngModelChange)="changeServiceDetails($event)" required>
+                          <mat-option *ngFor="let serviceDetail of serviceDetails" [value]="serviceDetail">{{serviceDetail.name}}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      <br>
+
+                      <div *ngIf="serviceDetailsFilter" class="service_create" [class.open]="isServiceDetail" [class.closed]="!isServiceDetail">
+                        <div class="row">
+                          <div class="col-sm-12">
+                            <mat-list>
+                              <div class="ml-3">
+                                <div class="row">
+                                  <div class="col-sm-6">
+                                    <mat-form-field>
+                                      <input matInput name="duration" [(ngModel)]="serviceDetailsFilter.duration" placeholder="Duración del servicio (días)" required>
+                                    </mat-form-field>
+                                  </div>
+                                  <div class="col-sm-6">
+                                    <mat-form-field>
+                                      <input matInput name="amount" [(ngModel)]="serviceDetailsFilter.estimatedPrice" placeholder="Monto Total del Servicio" required>
+                                    </mat-form-field>
+                                  </div>
+                                </div>
+                                <div class="ml-3" >
+                                  <h6><b>Recursos seleccionados:</b></h6>
+
+                                  <div *ngIf="totalResoucesSelected>0">
+                                    <mat-list-item *ngFor="let resource of serviceDetailsFilter.resources">
+                                      <h6 mat-subheader><b>{{ resource.quantity }} {{ resource.name }}</b></h6>
+                                    </mat-list-item>
+                                  </div>
+
+                                  <div *ngIf="totalResoucesSelected<=0">
+                                    <mat-list-item>
+                                      <h6 mat-subheader><b>Este servicio no tiene recursos configurados</b></h6>
+                                    </mat-list-item>
+                                  </div>
+
+                                </div>
+                              </div>
+                            </mat-list>
+                          </div>
+                        </div>
+                      </div>
+
+                      <br>
+
+                      <mat-form-field>
+                        <input matInput id="warrantyTime" name="warrantyTime" [(ngModel)]="warrantyTime" placeholder="Tiempo Estimado de Garantia" required>
+                      </mat-form-field>
+
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <button *ngIf="revision.status=='diagnosticated'" mat-raised-button color="primary" type="submit" class="mr-3" [disabled]="!updateForm.form.valid">Registrar</button>
+                      <!--<button *ngIf="revision.status=='finalized'" mat-raised-button color="primary" type="submit" class="mr-3" [disabled]="!updateForm.form.valid">Editar</button>-->
+                    </div>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+            <br>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>

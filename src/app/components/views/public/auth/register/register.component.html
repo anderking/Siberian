@@ -1,0 +1,52 @@
+<div class="main_register">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-sm-10 col-md-8 col-lg-6">
+	
+				<h2 class="text-center mb-3">Regístrate</h2>
+	
+				<form #registerForm="ngForm" (ngSubmit)="register(registerForm)">
+					<div class="form-row">
+	
+						<div class="col-md-12 mb-3">
+							<label for="email">Email</label>
+							<input type="text" class="form-control" name="email" placeholder="Email" [(ngModel)]="email" required>
+						</div>
+	
+						<div class="col-md-12 mb-3">
+							<label for="password">Contraseña</label>
+							<input type="password" class="form-control" name="password" placeholder="Contraseña" [(ngModel)]="password" required>
+						</div>
+	
+						<div class="col-md-12 mb-3">
+							<label for="firstName">Nombre</label>
+							<input type="text" class="form-control" name="firstName" placeholder="Nombre" [(ngModel)]="firstName" required>
+						</div>
+	
+						<div class="col-md-12 mb-3">
+							<label for="lastName">Apellido</label>
+							<input type="text" class="form-control" name="lastName" placeholder="Apellido" [(ngModel)]="lastName" required>
+						</div>
+	
+						<div class="col-md-12 mb-3">
+							<label for="dni">Cédula</label>
+							<input type="text" class="form-control" name="dni" placeholder="Cédula" [(ngModel)]="dni" required>
+						</div>
+						
+						<div class="col-md-12 mb-3">
+							<label for="dniType">Tipo de Cédula</label>
+							<select name="dniType" [(ngModel)]="dniTypeSelected" class="form-control" required>
+								<option *ngFor="let dniType of dniTypes" [value]="dniType.id"> {{dniType.name}}</option>
+							</select>
+						</div>
+
+					</div>
+	
+					<button mat-raised-button color="primary" class="mr-3" type="submit" [disabled]="!registerForm.form.valid">Registrar</button>
+					<button mat-raised-button color="primary" class="mr-3" [routerLink]="['/login']">Regresar</button>
+	
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

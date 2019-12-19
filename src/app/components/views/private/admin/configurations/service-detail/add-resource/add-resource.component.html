@@ -1,0 +1,118 @@
+<div class="container" *ngIf="serviceDetail">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="row">
+        <div class="col-sm-12">
+          <h2 class="text-center">Asignar Recursos</h2>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above"><mat-icon>arrow_back</mat-icon></button>
+        </div>
+      </div>
+
+      <hr>
+
+      <div *ngIf="resources">
+        <div class="row">
+          <div class="col-sm-12">
+            <mat-card>
+              <mat-card-header class="titulo border-top-danger">
+                <mat-card-title>
+                  {{ serviceDetail.name | titlecase}}
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="row">
+                  <div class="col-sm-8 offset-2">
+                    <br>
+
+                    <form #updateForm="ngForm" (ngSubmit)="update(updateForm)">
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <mat-form-field>
+                            <mat-select name="resources" [(ngModel)]="resourcesSelected" placeholder="Seleccione una o más recursos" (ngModelChange)="changeResources($event)" multiple>
+                              <mat-option *ngFor="let resource of resources" [value]="resource.id">{{resource.name}}</mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </div>
+                      </div>
+
+                      <div class="service_create" [class.open]="isResources" [class.closed]="!isResources">
+                        <div class="row" *ngFor="let resource of arraySearchResource; let i = index">
+                          <div class="col-sm-6">
+                            <mat-label><div class="text-right">Cantidad de {{resource.name}}:</div></mat-label>
+                          </div>
+                          <div class="col-sm-3">
+                            <mat-form-field>
+                              <input matInput type="number" min="1" placeholder="Cantidad de recursos" name="quantity" [(ngModel)]="resource.quantity">
+                            </mat-form-field>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <a [routerLink]="['/auth/admin/configurations/service/resource/create']">¿Nueva Recurso?</a>
+                        </div>
+                      </div>
+
+                      <br>
+
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <button mat-raised-button color="primary" class="mr-3" type="submit">Añadir</button>
+                        </div>
+                      </div>
+
+                    </form>
+
+                    <hr>
+
+                    <div *ngIf="serviceDetail.resources.length>0">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <mat-list>
+                            <mat-list-item *ngFor="let resource of serviceDetail.resources">
+                              <h4 mat-line>{{resource.name}} - {{ resource.quantity }}</h4>
+                            </mat-list-item>
+                          </mat-list>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div *ngIf="serviceDetail.resources.length<=0">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <mat-list>
+                            <mat-list-item>
+                              <h4 mat-line>No tiene Recursos</h4>
+                            </mat-list-item>
+                          </mat-list>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="total<=0">
+                  <h2 class="text-center">{{ message }}</h2>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <a [routerLink]="['/auth/admin/configurations/service/resource/create']">¿Nueva Recurso?</a>
+                    </div>
+                  </div>
+                </div>
+
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

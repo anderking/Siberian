@@ -1,0 +1,179 @@
+<div class="container">
+  <h2 *ngIf="equipinfras" class="text-center">Equipo</h2>
+  <button mat-raised-button color="primary" (click)="goBack()" matTooltip="Volver" matTooltipPosition="above">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <hr>
+  <div *ngIf="equipinfras">
+
+    <div class="row">
+      <div class="col-sm-12">
+        <table mat-table [dataSource]="dataSourceE" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Nombre </th>
+            <td mat-cell *matCellDef="let row"> {{ row.name }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Descripción </th>
+            <td mat-cell *matCellDef="let row"> {{ row.description }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef> Categoría </th>
+            <td mat-cell *matCellDef="let row"> {{ row.subcategory.Category.name }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="subcategory">
+            <th mat-header-cell *matHeaderCellDef> Subcategoría </th>
+            <td mat-cell *matCellDef="let row"> {{ row.subcategory.name }} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="varieties">
+            <th mat-header-cell *matHeaderCellDef> Variedades </th>
+            <td mat-cell *matCellDef="let row"> {{ row.varieties.length}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Estatus </th>
+            <td mat-cell *matCellDef="let row">
+              <span *ngIf="row.status=='active'" class="badge badge-success">{{row.status | titlecase}}</span>
+              <span *ngIf="row.status=='deleted'" class="badge badge-danger">{{row.status | titlecase}}</span>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsE"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsE;"></tr>
+        </table>
+
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="offset-sm-4 col-ms-4">
+        <mat-card class="card_img imgRequest">
+          <mat-card-content class="mat_card_content">
+            <img [src]="equipInfras?.imageUrl || 'https://res.cloudinary.com/teamwatson/image/upload/v1574783497/EN-BLANCO_ovel9g.png'" alt="">
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <h2 class="text-center">Variedades</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <button mat-raised-button color="primary" class="mr-3"
+          [routerLink]="['/auth/admin/configurations/catalog/equip-infras',equipinfras.id,'addVariety']"
+          matTooltip="Asignar Variedad" matTooltipPosition="above">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <hr>
+
+    <div *ngIf="varieties">
+
+      <div class="row">
+        <div class="col-sm-12">
+          <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="mat-elevation-z8">
+
+            <div *ngIf="varieties.length<=0 && !failedConect">
+              <div class="row">
+                <div class="col-sm-12">
+                  <h3 class="text-center mt-3 mb-3">Este Equipo/Infraestructura no tiene variedades asociadas</h3>
+                </div>
+              </div>
+            </div>
+
+
+            <table *ngIf="varieties.length>0" mat-table [dataSource]="dataSource">
+
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row">
+                  <button mat-icon-button color="accent" [routerLink]="['variety',row.id,{EquipinfraId:equipinfras.id}]"
+                    matTooltip="Detalle" matTooltipPosition="above">
+                    <mat-icon>remove_red_eye</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef> Descripción </th>
+                <td mat-cell *matCellDef="let row"> {{row.description}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="varietyDetail">
+                <th mat-header-cell *matHeaderCellDef> Modelos </th>
+                <td mat-cell *matCellDef="let row"> {{row.varietyDetails.length}}</td>
+              </ng-container>
+
+              <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> Estatus </th>
+                <td mat-cell *matCellDef="let row">
+                  <span *ngIf="row.status=='active'" class="badge badge-success">{{row.status | titlecase}}</span>
+                  <span *ngIf="row.status=='deleted'" class="badge badge-danger">{{row.status | titlecase}}</span>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="addvarietyDetail">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row">
+                  <button mat-icon-button color="primary"
+                    [routerLink]="['/auth/admin/configurations/catalog/equip-infras/',equipinfras.id,'addVariety',row.id,'addVarietyDetails',{EquipinfraId:equipinfras.id}]"
+                    matTooltip="Asignar Modelo" matTooltipPosition="above">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let row">
+                  <button mat-icon-button color="warn" (click)="onDelete(row.id)" matTooltip="Borrar Variedad"
+                    matTooltipPosition="above">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+              </tr>
+            </table>
+
+            <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
