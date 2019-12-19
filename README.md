@@ -1,9 +1,1 @@
-¡IMPORTANTE!
-
-Luego de hacer clone/pull/fetch al proyecto, lo primero que deben hacer es
-instalar las dependencias, para ello usar el siguiente comando en una consola
-iniciada en el directorio del proyecto:
-
-yarn
-
-Eso es todo.
+SIBERIAN es un sistema de información que brinda soporte a las actividades de mantenimiento y reparación de equipos electrodomésticos e infraestructuras en hogares y oficinas. Capaz de generar información útil y confiable, optimizando las gestiones de clientes y solicitudes, servicio de mantenimiento y reparación, y post-servicio, contando además con un canal de escucha al cliente.
